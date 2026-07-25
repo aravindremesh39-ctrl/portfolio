@@ -1,11 +1,16 @@
-import React, { useState, useEffect } from 'react';
+
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+
 import { 
   ArrowLeft, ArrowRight, ExternalLink, Calendar, User, Clock, 
-  Briefcase, CheckCircle2, Sparkles, X, ChevronLeft, ChevronRight,
+  Briefcase, CheckCircle2, Sparkles, ChevronLeft, ChevronRight,
   Layers, Image, PenTool, Film, Video, Sliders, Figma, Box, Cpu, Layout
 } from 'lucide-react';
+import ImageLightbox from '../components/ImageLightbox';
+import { useState, useEffect } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { X } from "lucide-react";
+
 import { portfolioData } from '../data/portfolioData';
 
 const toolIconMap = {
@@ -60,6 +65,18 @@ const ProjectDetails = () => {
   // Related Projects (excluding current)
   const relatedProjects = projects.filter(p => p.slug !== slug).slice(0, 3);
 
+  const [previewImage, setPreviewImage] = useState(null);
+
+   useEffect(() => {
+  const handleKeyDown = (e) => {
+    if (e.key === "Escape") setPreviewImage(null);
+  };
+
+  window.addEventListener("keydown", handleKeyDown);
+
+  return () => window.removeEventListener("keydown", handleKeyDown);
+}, []);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -111,35 +128,58 @@ const ProjectDetails = () => {
           </p>
 
           {/* Large Hero Banner Image */}
-          <div className="relative aspect-[16/9] md:aspect-[21/9] w-full rounded-3xl overflow-hidden border border-white/10 shadow-glass group">
-            <img
-              src={project.coverImage}
-              alt={project.title}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-60" />
-          </div>
+         <div className="relative h-[300px] w-full rounded-3xl overflow-hidden border border-white/10 shadow-glass group cursor-zoom-in"
+  onClick={() => setPreviewImage(project.coverImage)}
+>
+  <img
+    src={project.coverImage}
+    alt={project.title}
+    className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
+  />
+
+  <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-60" />
+
+  {/* Hover Icon */}
+  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+    <div className="px-5 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm">
+      Click to Preview
+    </div>
+  </div>
+</div>
+<AnimatePresence>
+  {previewImage && (
+    <motion.div
+      className="fixed inset-0 z-[9999] bg-black/90 backdrop-blur-xl flex items-center justify-center p-8"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.25 }}
+      onClick={() => setPreviewImage(null)}
+    >
+      {/* Close Button */}
+      
+
+      {/* Image */}
+      <motion.img
+        src={previewImage}
+        alt="Preview"
+        initial={{ opacity: 0, scale: 0.8, y: 30 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.8 }}
+        transition={{
+          type: "spring",
+          stiffness: 120,
+          damping: 20,
+        }}
+        className="max-w-[70vw] max-h-[70vh] rounded-2xl shadow-2xl object-contain"
+        onClick={(e) => e.stopPropagation()}
+      />
+    </motion.div>
+  )}
+</AnimatePresence>
         </div>
 
-        {/* ================= PROJECT INFORMATION CARD ================= */}
-        <div className="glass-card p-6 md:p-8 rounded-3xl border border-white/10 grid grid-cols-2 md:grid-cols-4 gap-6">
-          <div>
-            <span className="text-[10px] uppercase tracking-widest font-semibold text-white/40 block mb-1">CLIENT</span>
-            <span className="text-sm font-medium text-white">{project.client || "Client Work"}</span>
-          </div>
-          <div>
-            <span className="text-[10px] uppercase tracking-widest font-semibold text-white/40 block mb-1">DURATION</span>
-            <span className="text-sm font-medium text-white">{project.duration || "3 Weeks"}</span>
-          </div>
-          <div>
-            <span className="text-[10px] uppercase tracking-widest font-semibold text-white/40 block mb-1">ROLE</span>
-            <span className="text-sm font-medium text-white">{project.role || "Lead Designer"}</span>
-          </div>
-          <div>
-            <span className="text-[10px] uppercase tracking-widest font-semibold text-white/40 block mb-1">INDUSTRY</span>
-            <span className="text-sm font-medium text-white">{project.industry || "Design & Tech"}</span>
-          </div>
-        </div>
+        
 
         {/* ================= TOOLS USED BADGES ================= */}
         <div className="space-y-3">
@@ -171,22 +211,9 @@ const ProjectDetails = () => {
               <p>{project.overview || project.description}</p>
             </div>
 
-            <div>
-              <h3 className="text-base font-semibold text-white mb-2 uppercase tracking-wider text-[#C8102E]">THE OBJECTIVE</h3>
-              <p>{project.objective || "To craft a compelling, modern digital visual identity and user interface experience."}</p>
-            </div>
+            
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
-              <div className="glass-card p-6 rounded-2xl border border-white/10">
-                <h4 className="text-xs uppercase tracking-widest font-semibold text-[#C8102E] mb-2">DESIGN CHALLENGE</h4>
-                <p className="text-xs sm:text-sm text-white/70">{project.challenge}</p>
-              </div>
-
-              <div className="glass-card p-6 rounded-2xl border border-white/10">
-                <h4 className="text-xs uppercase tracking-widest font-semibold text-[#C8102E] mb-2">SOLUTIONS CREATED</h4>
-                <p className="text-xs sm:text-sm text-white/70">{project.solution}</p>
-              </div>
-            </div>
+          
 
             <div>
               <h3 className="text-base font-semibold text-white mb-2 uppercase tracking-wider text-[#C8102E]">FINAL OUTCOME</h3>
@@ -196,55 +223,10 @@ const ProjectDetails = () => {
         </div>
 
         {/* ================= DESIGN PROCESS TIMELINE ================= */}
-        {project.designProcess && (
-          <div className="space-y-8 pt-8 border-t border-white/10">
-            <div className="flex flex-col items-center text-center">
-              <span className="text-xs uppercase tracking-widest font-semibold text-[#C8102E] mb-1">WORKFLOW</span>
-              <h2 className="font-bebas text-3xl sm:text-4xl text-white tracking-wide">DESIGN PROCESS</h2>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-              {project.designProcess.map((proc) => (
-                <div key={proc.step} className="glass-card p-5 rounded-2xl border border-white/10 flex flex-col justify-between">
-                  <span className="font-bebas text-3xl text-[#C8102E] mb-2">{proc.step}</span>
-                  <h4 className="font-bebas text-xl text-white tracking-wide mb-1">{proc.name}</h4>
-                  <p className="text-[11px] text-white/60 leading-snug">{proc.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
+       
 
         {/* ================= PROJECT GALLERY WITH LIGHTBOX ================= */}
-        <div className="space-y-6 pt-8 border-t border-white/10">
-          <div className="flex flex-col items-center text-center">
-            <span className="text-xs uppercase tracking-widest font-semibold text-[#C8102E] mb-1">VISUAL ASSETS</span>
-            <h2 className="font-bebas text-3xl sm:text-4xl text-white tracking-wide">PROJECT GALLERY</h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {(project.gallery || [project.coverImage]).map((imgUrl, idx) => (
-              <motion.div
-                key={idx}
-                whileHover={{ scale: 1.03 }}
-                onClick={() => setLightboxImage(imgUrl)}
-                className="cursor-pointer aspect-[4/3] rounded-2xl overflow-hidden border border-white/10 glass-card relative group"
-              >
-                <img
-                  src={imgUrl}
-                  alt={`${project.title} gallery ${idx + 1}`}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-[#C8102E]/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <span className="px-4 py-2 rounded-full bg-black/80 text-xs font-semibold text-white tracking-wider border border-white/20">
-                    CLICK TO ENLARGE 🔍
-                  </span>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
+        
 
         {/* ================= RESULTS & KEY METRICS ================= */}
         {project.results && (
@@ -316,29 +298,11 @@ const ProjectDetails = () => {
       </main>
 
       {/* ================= LIGHTBOX MODAL ================= */}
-      <AnimatePresence>
-        {lightboxImage && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setLightboxImage(null)}
-            className="fixed inset-0 z-50 bg-black/95 backdrop-blur-2xl p-4 sm:p-8 flex items-center justify-center"
-          >
-            <button
-              onClick={() => setLightboxImage(null)}
-              className="absolute top-6 right-6 p-3 rounded-full bg-white/10 text-white hover:bg-[#C8102E] transition-colors"
-            >
-              <X size={24} />
-            </button>
-            <img
-              src={lightboxImage}
-              alt="Enlarged gallery asset"
-              className="max-w-full max-h-[88vh] rounded-2xl object-contain border border-white/10 shadow-2xl"
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <ImageLightbox
+        image={lightboxImage}
+        alt={project ? `${project.title} – enlarged view` : 'Project image'}
+        onClose={() => setLightboxImage(null)}
+      />
     </motion.div>
   );
 };

@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import { Folder, ExternalLink, ArrowRight, Eye } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
 const Projects = () => {
   const [selectedFilter, setSelectedFilter] = useState('All');
+  const navigate=useNavigate()
 
   // Categories
   const filterCategories = ['All', 'Posters', 'Branding', 'UI/UX', '2D Design', '3D Design', 'Animation'];
@@ -77,7 +78,7 @@ const Projects = () => {
                 className="group relative glass-card rounded-2xl overflow-hidden border border-white/10 hover:border-[#C8102E]/50 flex flex-col justify-between"
               >
                 {/* Thumbnail Container */}
-                <Link to={`/projects/${project.slug}`} className="relative aspect-[16/10] overflow-hidden bg-black/40 block">
+                <div onClick={() => navigate(`/projects/${project.slug}`)} className="relative aspect-[16/10] overflow-hidden bg-black/40 block">
                   <img
                     src={project.coverImage}
                     alt={project.title}
@@ -92,11 +93,11 @@ const Projects = () => {
                   {/* Hover Overlay */}
                   <div className="absolute inset-0 bg-[#050505]/80 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3 z-10">
                     <span className="px-5 py-2.5 rounded-full bg-[#C8102E] text-white font-bebas text-base tracking-widest flex items-center gap-2 shadow-red-glow">
-                      <span>VIEW CASE STUDY</span>
+                      <span>VIEW PROJECT</span>
                       <ArrowRight size={16} />
                     </span>
                   </div>
-                </Link>
+                </div>
 
                 {/* Content */}
                 <div className="p-6 flex flex-col justify-between flex-1">

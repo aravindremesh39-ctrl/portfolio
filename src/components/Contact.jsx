@@ -30,15 +30,26 @@ const Contact = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const RECIPIENT = atob('YXJhdmluZG1yMTM0N0BnbWFpbC5jb20='); // base64 of aravindmr1347@gmail.com
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
+    // Build mailto URI with form data
+    const subject = encodeURIComponent(`[Portfolio Inquiry] ${formData.subject}`);
+    const body = encodeURIComponent(
+      `Hi Aravind,\n\nName: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+    );
+    const mailtoLink = `mailto:${RECIPIENT}?subject=${subject}&body=${body}`;
+
+    // Open user's default mail client
+    window.location.href = mailtoLink;
+
+    // Show success state and confetti after triggering
     setTimeout(() => {
       setIsSubmitting(false);
       setSubmitted(true);
-
-      // Trigger Confetti celebration
       try {
         confetti({
           particleCount: 80,
@@ -46,10 +57,8 @@ const Contact = () => {
           origin: { y: 0.6 },
           colors: ['#C8102E', '#FFFFFF', '#E50914']
         });
-      } catch (err) {
-        console.log("Confetti triggered");
-      }
-    }, 1000);
+      } catch (_) {}
+    }, 500);
   };
 
   return (

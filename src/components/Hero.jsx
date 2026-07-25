@@ -100,7 +100,7 @@ const Hero = () => {
           </span>
 
           {/* Headline Name - ARAVIND RAMESH */}
-          <h1 className="font-bebas text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-white tracking-tight leading-[0.9] mb-4">
+          <h1 className="font-bebas text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-white tracking-tight leading-[0.9]">
             ARAVIND<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/70">
               RAMESH
@@ -109,18 +109,8 @@ const Hero = () => {
 
           {/* Subheading Roles */}
           <div className="flex flex-col gap-1.5 mb-5">
-            <div className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#C8102E]" />
-              <span className="text-xs sm:text-sm font-semibold tracking-widest uppercase text-[#C8102E]">
-                UI / UX Designer
-              </span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-white/40" />
-              <span className="text-xs sm:text-sm font-medium tracking-widest uppercase text-white/80">
-                Graphic Designer
-              </span>
-            </div>
+
+            
           </div>
 
           {/* Description Paragraph */}
@@ -153,21 +143,21 @@ const Hero = () => {
           className="lg:col-span-5 flex justify-center items-center relative my-6 lg:my-0 group z-20"
         >
           {/* Outer Frame Container */}
-          <div className="relative w-full max-w-[340px] sm:max-w-[400px] lg:max-w-[420px] aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl transition-transform duration-500">
+          <div className="relative w-full max-w-[340px] sm:max-w-[400px] lg:max-w-[420px] aspect-[4/5] rounded-4xl overflow-hidden transition-transform duration-500">
             
             {/* Dark Gradient Backdrop */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-90 z-10" />
+           
 
             {/* Portrait Image (Overlaps PORTFOLIO background text) */}
             <img
               src="/assets/aravind.png"
               alt="Aravind Ramesh"
-              className="w-full h-full object-cover filter brightness-[0.9] contrast-[1.05] transition-transform duration-500 group-hover:scale-105"
+              className="w-full  h-full p-8 object-cover filter brightness-[0.9] contrast-[1.05] transition-transform duration-500 group-hover:scale-105"
               loading="eager"
             />
 
             {/* Bottom Dark Fade into background */}
-            <div className="absolute bottom-0 left-0 right-0 h-36 bg-gradient-to-t from-[#050505] via-[#050505]/70 to-transparent z-10" />
+           
           </div>
 
           {/* Floating Aesthetic Badge */}

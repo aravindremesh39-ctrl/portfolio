@@ -88,7 +88,7 @@ export const portfolioData = {
     {
       id: 1,
       slug: "neon-horizon-cyberpunk-poster",
-      title: "Neon Horizon Cyberpunk Poster",
+      title: "Mothers Day POster Design",
       category: "Posters",
       year: "2026",
       client: "CyberPulse Media & Entertainment",
@@ -96,10 +96,10 @@ export const portfolioData = {
       role: "Lead Graphic Artist & Illustrator",
       industry: "Entertainment & Gaming",
       tech: ["Adobe Photoshop", "Adobe Illustrator", "Lightroom"],
-      coverImage: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=1400&q=80",
+      coverImage: "/assets/mother_s_day.jpg",
       description: "High-contrast editorial graphic poster design featuring custom typography and dark glowing neon aesthetics.",
-      overview: "Neon Horizon is a high-concept editorial poster artwork designed for a futuristic digital audio-visual event. The project focuses on combining dark atmospheric lighting with vivid crimson neon accents to establish an immersive cyberpunk aesthetic.",
-      objective: "To design a visually striking poster campaign that commands immediate attention across digital platforms and physical print displays while establishing a futuristic visual identity.",
+      overview: "This Mother's Day poster features a silhouette of a mother holding her child, symbolizing love and care. A soft pink color palette, floral elements, hearts, and elegant typography create a warm and celebratory design, with the message Happy Mother's Day as the focal point.",
+    
       challenge: "Balancing intense neon lighting contrast against deep black tones without sacrificing legibility of event information and fine character detail.",
       solution: "Engineered a dual-layer color grading process in Adobe Photoshop combined with custom vector typography created in Adobe Illustrator to maintain crisp clarity at any scale.",
       outcome: "Delivered print-ready 300DPI artwork along with digital social media kits that increased event registration engagement by over 45%.",
