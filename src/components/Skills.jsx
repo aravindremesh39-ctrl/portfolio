@@ -1,82 +1,120 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Cpu, Layout, Palette, Image, PenTool, Film, Video, Sliders, Figma, Sparkles, Box } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
+const skillIconMap = {
+  "UI Design": <Layout size={22} />,
+  "Artist": <Palette size={22} />,
+  "Adobe Photoshop": <Image size={22} />,
+  "Adobe XD": <Figma size={22} />,
+  "Adobe Illustrator": <PenTool size={22} />,
+  "Adobe After Effects": <Film size={22} />,
+  "Adobe Premiere Pro": <Video size={22} />,
+  "Adobe Lightroom": <Sliders size={22} />,
+  "Figma": <Figma size={22} />,
+  "Canva": <Sparkles size={22} />,
+  "Blender": <Box size={22} />,
+  "Autodesk Maya (3D Maya)": <Cpu size={22} />
+};
+
 const Skills = () => {
+  const skillCategories = portfolioData.skills;
+  const [selectedCategory, setSelectedCategory] = useState('All');
+
+  const categoryNames = ['All', ...skillCategories.map(c => c.category)];
+
   return (
-    <section
-      id="skills"
-      className="relative py-24 md:py-32 bg-[#0B0B0B]"
-    >
-      {/* Decorative blurred background orb */}
-      <div className="absolute right-0 top-1/4 w-80 h-80 rounded-full bg-accentOrange/5 blur-[120px] pointer-events-none" />
+    <section id="skills" className="relative py-24 bg-[#050505] overflow-hidden">
+      {/* Background Radial Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-[#C8102E]/10 rounded-full blur-[160px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 z-10 relative">
-        {/* Section Label */}
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="text-xs uppercase tracking-[0.25em] text-accentOrange mb-4 flex items-center gap-3 font-semibold"
-        >
-          <span className="w-1.5 h-1.5 rounded-full bg-accentOrange" />
-          02 / EXPERTISE
-        </motion.div>
+      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+        
+        {/* Section Header */}
+        <div className="flex flex-col items-center text-center mb-12">
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#C8102E]/10 border border-[#C8102E]/30 mb-4"
+          >
+            <Cpu size={14} className="text-[#C8102E]" />
+            <span className="text-xs uppercase tracking-[0.2em] font-semibold text-[#C8102E]">
+              SKILLS & PROFICIENCY
+            </span>
+          </motion.div>
 
-        {/* Title */}
-        <motion.h2
-          className="text-3xl md:text-5xl font-extrabold text-white mb-16 font-display"
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
-        >
-          My Craft & Arsenal
-        </motion.h2>
+          <motion.h2
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="font-bebas text-4xl sm:text-5xl md:text-6xl text-white tracking-tight leading-none"
+          >
+            CREATIVE <span className="text-[#C8102E]">TOOLKIT</span>
+          </motion.h2>
 
-        {/* Skills Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-          {portfolioData.skills.map((category, idx) => (
-            <motion.div
-              key={category.category}
-              className="glass-panel p-8 md:p-10 rounded-[2rem] shadow-glass flex flex-col justify-between"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, delay: idx * 0.15, ease: [0.16, 1, 0.3, 1] }}
-              whileHover={{ y: -4, borderColor: 'rgba(255,122,0,0.2)' }}
-            >
-              <div>
-                <h3 className="text-xl font-bold tracking-wide text-white mb-8 font-display border-b border-white/5 pb-4">
-                  {category.category}
+          {/* Category Filter Tabs */}
+          <div className="flex flex-wrap justify-center gap-2 mt-8">
+            {categoryNames.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setSelectedCategory(cat)}
+                className={`px-5 py-2 rounded-full text-xs font-semibold tracking-wider uppercase transition-all duration-300 ${
+                  selectedCategory === cat
+                    ? 'bg-[#C8102E] text-white shadow-red-glow scale-105'
+                    : 'bg-white/5 border border-white/10 text-white/60 hover:text-white hover:bg-white/10'
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Categorized Skills Display */}
+        <div className="space-y-12">
+          {skillCategories
+            .filter(catGroup => selectedCategory === 'All' || catGroup.category === selectedCategory)
+            .map((catGroup) => (
+              <div key={catGroup.category} className="flex flex-col gap-4">
+                <h3 className="font-bebas text-2xl text-white/90 tracking-wide border-b border-white/10 pb-2 flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-[#C8102E]" />
+                  <span>{catGroup.category}</span>
                 </h3>
 
-                <div className="space-y-6">
-                  {category.items.map((skill) => (
-                    <div key={skill.name} className="flex flex-col gap-2">
-                      <div className="flex justify-between items-center text-sm font-medium">
-                        <span className="text-white/80">{skill.name}</span>
-                        <span className="text-accentOrange font-display">{skill.level}%</span>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {catGroup.items.map((skill) => (
+                    <motion.div
+                      key={skill.name}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4 }}
+                      whileHover={{ y: -4 }}
+                      className="glass-card p-5 rounded-2xl flex items-center justify-between border border-white/10 hover:border-[#C8102E]/50 group"
+                    >
+                      <div className="flex items-center gap-4">
+                        <div className="w-11 h-11 rounded-xl bg-[#C8102E]/15 border border-[#C8102E]/30 flex items-center justify-center text-[#C8102E] group-hover:bg-[#C8102E] group-hover:text-white transition-colors shadow-md shrink-0">
+                          {skillIconMap[skill.name] || <Sparkles size={20} />}
+                        </div>
+                        <span className="font-bebas text-2xl text-white tracking-wide group-hover:text-[#C8102E] transition-colors">
+                          {skill.name}
+                        </span>
                       </div>
-                      
-                      {/* Animated Progress Bar */}
-                      <div className="w-full h-[3px] bg-white/5 rounded-full overflow-hidden">
-                        <motion.div
-                          className="h-full bg-gradient-to-r from-accentOrange to-orange-400 rounded-full"
-                          initial={{ width: 0 }}
-                          whileInView={{ width: `${skill.level}%` }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-                        />
-                      </div>
-                    </div>
+
+                      {/* Percentage pill badge */}
+                      <span className="font-mono text-xs font-bold text-white/70 bg-white/5 px-2.5 py-1 rounded-md border border-white/10">
+                        {skill.percentage}%
+                      </span>
+                    </motion.div>
                   ))}
                 </div>
               </div>
-            </motion.div>
-          ))}
+            ))}
         </div>
+
       </div>
     </section>
   );

@@ -1,146 +1,161 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
-import { portfolioData } from '../data/portfolioData';
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
 
   const navLinks = [
+    { name: 'Home', href: '#hero' },
     { name: 'About', href: '#about' },
     { name: 'Skills', href: '#skills' },
+    { name: 'Experience', href: '#experience' },
     { name: 'Projects', href: '#projects' },
     { name: 'Contact', href: '#contact' },
   ];
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 40);
+
+      const sections = navLinks.map(link => link.href.substring(1));
+      const scrollPosition = window.scrollY + 200;
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = document.getElementById(sections[i]);
+        if (section && section.offsetTop <= scrollPosition) {
+          setActiveSection(sections[i]);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <>
       <motion.header
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-          scrolled
-            ? 'bg-black/60 backdrop-blur-md border-b border-white/5 py-4'
-            : 'bg-transparent py-6'
-        }`}
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          isScrolled
+            ? 'py-3.5 bg-[#050505]/80 backdrop-blur-xl border-b border-white/10 shadow-glass'
+            : 'py-6 bg-transparent border-b border-white/5'
+        }`}
       >
-        <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
+          
           {/* Logo */}
           <a
             href="#hero"
-            className="text-lg font-bold tracking-[0.2em] hover:text-accentOrange transition-colors duration-300 font-display"
+            className="flex items-center gap-2 group text-decoration-none"
           >
-            {portfolioData.personalInfo.name.toUpperCase()}
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#C8102E] to-black border border-[#C8102E]/40 flex items-center justify-center font-bebas text-xl text-white tracking-widest shadow-red-glow group-hover:scale-105 transition-transform duration-300">
+              AR
+            </div>
+            <div className="flex flex-col text-left">
+              <span className="font-bebas text-lg tracking-wider text-white group-hover:text-[#C8102E] transition-colors leading-none">
+                ARAVIND RAMESH
+              </span>
+              <span className="text-[9px] uppercase tracking-widest text-white/40 leading-tight">
+                PORTFOLIO
+              </span>
+            </div>
           </a>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-10">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="text-sm font-medium tracking-widest text-white/70 hover:text-white transition-colors duration-300 relative group py-1"
-              >
-                {link.name}
-                <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-accentOrange transition-all duration-300 group-hover:w-full" />
-              </a>
-            ))}
-            <a
-              href="#contact"
-              className="text-xs font-semibold uppercase tracking-widest border border-white/20 hover:border-accentOrange hover:bg-accentOrange text-white px-5 py-2.5 rounded-full transition-all duration-300 flex items-center gap-1 group"
-            >
-              Collaborate
-              <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
-            </a>
+          {/* Desktop Navigation Links */}
+          <nav className="hidden lg:flex items-center gap-1 bg-white/[0.03] p-1.5 rounded-full border border-white/10 backdrop-blur-md">
+            {navLinks.map((link) => {
+              const sectionId = link.href.substring(1);
+              const isActive = activeSection === sectionId || (activeSection === 'hero' && sectionId === 'home');
+              return (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className={`px-4 py-2 rounded-full text-xs font-medium tracking-wider uppercase transition-all duration-300 relative ${
+                    isActive
+                      ? 'text-white font-semibold'
+                      : 'text-white/60 hover:text-white hover:bg-white/5'
+                  }`}
+                >
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeNavIndicator"
+                      className="absolute inset-0 bg-[#C8102E] rounded-full -z-10 shadow-red-glow"
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                  {link.name}
+                </a>
+              );
+            })}
           </nav>
 
-          {/* Mobile Menu Button */}
+          {/* Desktop CTA Button */}
+          <div className="hidden lg:flex items-center gap-4">
+            <a
+              href="#contact"
+              className="group relative px-6 py-2.5 rounded-full bg-gradient-to-r from-[#C8102E] to-[#900B20] text-white font-medium text-xs uppercase tracking-widest overflow-hidden shadow-red-glow hover:shadow-red-glow-lg transition-all duration-300 flex items-center gap-2 transform hover:-translate-y-0.5"
+            >
+              <span>Let's Talk</span>
+              <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
+            </a>
+          </div>
+
+          {/* Mobile Menu Toggle Button */}
           <button
-            onClick={() => setIsOpen(true)}
-            className="md:hidden text-white hover:text-accentOrange transition-colors focus:outline-none"
-            aria-label="Open menu"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+            className="lg:hidden p-2.5 rounded-xl bg-white/5 border border-white/10 text-white hover:text-[#C8102E] transition-colors"
           >
-            <Menu size={24} />
+            {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </motion.header>
 
-      {/* Fullscreen Mobile Menu Overlay */}
+      {/* Mobile Navigation Drawer */}
       <AnimatePresence>
-        {isOpen && (
+        {mobileMenuOpen && (
           <motion.div
-            className="fixed inset-0 w-full h-screen bg-[#0B0B0B] z-50 flex flex-col justify-between p-8"
-            initial={{ opacity: 0, y: '-100%' }}
+            initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: '-100%' }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-40 bg-[#050505]/95 backdrop-blur-2xl pt-28 px-6 pb-12 flex flex-col justify-between lg:hidden"
           >
-            {/* Mobile Header */}
-            <div className="flex justify-between items-center">
-              <span className="text-lg font-bold tracking-[0.2em] font-display">
-                {portfolioData.personalInfo.name.toUpperCase()}
-              </span>
-              <button
-                onClick={() => setIsOpen(false)}
-                className="text-white hover:text-accentOrange transition-colors focus:outline-none"
-                aria-label="Close menu"
-              >
-                <X size={24} />
-              </button>
+            <div className="flex flex-col gap-4">
+              {navLinks.map((link, idx) => (
+                <motion.a
+                  key={link.name}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: idx * 0.05 }}
+                  className="font-bebas text-3xl tracking-wider text-white/80 hover:text-[#C8102E] transition-colors py-2 border-b border-white/5 flex items-center justify-between group"
+                >
+                  <span>{link.name}</span>
+                  <ArrowUpRight size={20} className="text-white/30 group-hover:text-[#C8102E] group-hover:translate-x-1 transition-all" />
+                </motion.a>
+              ))}
             </div>
 
-            {/* Mobile Nav Links */}
-            <nav className="flex flex-col space-y-6 my-auto text-left pl-4">
-              {navLinks.map((link, idx) => (
-                <motion.div
-                  key={link.name}
-                  initial={{ opacity: 0, x: -50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.1 * idx, duration: 0.5 }}
-                >
-                  <a
-                    href={link.href}
-                    onClick={() => setIsOpen(false)}
-                    className="text-4xl md:text-5xl font-bold tracking-wider hover:text-accentOrange transition-colors duration-300 font-display block"
-                  >
-                    {link.name}
-                  </a>
-                </motion.div>
-              ))}
-            </nav>
-
-            {/* Mobile Menu Footer */}
-            <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-              <div className="flex gap-6">
-                {portfolioData.socials.map((social) => (
-                  <a
-                    key={social.name}
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm text-white/50 hover:text-accentOrange transition-colors duration-300"
-                  >
-                    {social.name}
-                  </a>
-                ))}
+            <div className="flex flex-col gap-4 pt-8">
+              <a
+                href="#contact"
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-full py-4 rounded-xl bg-[#C8102E] text-white font-bebas text-xl text-center tracking-widest shadow-red-glow"
+              >
+                LET'S TALK
+              </a>
+              <div className="text-center text-xs text-white/40 uppercase tracking-widest pt-2">
+                © 2026 ARAVIND RAMESH • ALL RIGHTS RESERVED
               </div>
-              <p className="text-xs text-white/30">
-                &copy; 2026 {portfolioData.personalInfo.name}. All rights reserved.
-              </p>
             </div>
           </motion.div>
         )}

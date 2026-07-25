@@ -1,173 +1,234 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { ArrowDown, Check } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { Sparkles, ArrowRight, ChevronDown } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
+// Animated Counter Component for Statistics
+const AnimatedCounter = ({ value, suffix = "+" }) => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    let start = 0;
+    const end = parseInt(value, 10);
+    if (start === end) return;
+
+    const duration = 1200;
+    const incrementTime = (duration / end);
+
+    const timer = setInterval(() => {
+      start += 1;
+      setCount(start);
+      if (start === end) clearInterval(timer);
+    }, incrementTime);
+
+    return () => clearInterval(timer);
+  }, [value]);
+
+  return <span>{count}{suffix}</span>;
+};
+
 const Hero = () => {
-  const { name, title, tagline, subTagline, avatar } = portfolioData.personalInfo;
+  const { avatar } = portfolioData.personalInfo ? portfolioData.personalInfo : {};
+  const heroRef = useRef(null);
 
-  // Stagger animation container
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.3,
-      },
-    },
+  // Mouse tilt effect
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e) => {
+    if (!heroRef.current) return;
+    const rect = heroRef.current.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    setTilt({ x: x * 10, y: y * -10 });
   };
 
-  // Fade up variant
-  const itemVariants = {
-    hidden: { y: 40, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
-    },
+  const handleMouseLeave = () => {
+    setTilt({ x: 0, y: 0 });
   };
+
+  // Parallax background typography on scroll
+  const { scrollY } = useScroll();
+  const yParallax = useTransform(scrollY, [0, 600], [0, 100]);
+  const smoothYParallax = useSpring(yParallax, { stiffness: 120, damping: 25 });
 
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center bg-[#0B0B0B] pt-24 pb-16 overflow-hidden select-none"
+      ref={heroRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="relative w-full min-h-screen pt-28 pb-12 flex flex-col justify-between items-center bg-[#050505] overflow-hidden select-none"
     >
-      <div className="max-w-7xl mx-auto w-full px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center z-10">
+      {/* Top Bar Header Labels */}
+      <div className="w-full max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center text-[10px] sm:text-xs font-semibold uppercase tracking-[0.25em] text-white/50 border-b border-white/5 pb-4 z-20">
+        <div className="flex items-center gap-2">
+          <span className="w-2 h-2 rounded-full bg-[#C8102E] animate-ping" />
+          <span>UI/UX DESIGNER & GRAPHIC ARTIST</span>
+        </div>
+        <div className="flex items-center gap-2 text-white/70">
+          <span className="text-[#C8102E]">✦</span>
+          <span>CREATIVE PORTFOLIO</span>
+        </div>
+      </div>
+
+      {/* Background Glowing Lights (z-0) */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] sm:w-[650px] sm:h-[650px] bg-[#C8102E]/20 rounded-full blur-[140px] pointer-events-none z-0 animate-pulse-slow" />
+
+      {/* Massive Background Typography 'PORTFOLIO' (Strictly behind Hero Image: z-0) */}
+      <motion.div
+        style={{ y: smoothYParallax }}
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center pointer-events-none z-0 overflow-hidden"
+      >
+        <h1 className="font-bebas text-[22vw] sm:text-[20vw] font-extrabold tracking-tighter text-[#C8102E] opacity-[0.24] leading-none select-none drop-shadow-2xl">
+          PORTFOLIO
+        </h1>
+      </motion.div>
+
+      {/* Main Hero Grid Container (z-10 / z-20 so portrait overlaps PORTFOLIO) */}
+      <div className="max-w-7xl mx-auto w-full px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-4 items-center my-auto z-10">
         
-        {/* Left Side Details */}
+        {/* Left Side Content */}
         <motion.div
-          className="lg:col-span-7 flex flex-col justify-center text-left"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+          className="lg:col-span-4 flex flex-col justify-center text-left z-20"
         >
-          {/* Tag / Badge */}
-          <motion.div
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 w-fit mb-6"
-            variants={itemVariants}
-          >
-            <span className="flex items-center justify-center w-4 h-4 rounded-full bg-accentOrange text-black">
-              <Check size={10} strokeWidth={4} />
-            </span>
-            <span className="text-xs uppercase tracking-[0.2em] font-medium text-white/80">
-              {title}
-            </span>
-          </motion.div>
+          {/* Cursive Greeting */}
+          <span className="font-script text-4xl sm:text-5xl md:text-6xl text-[#C8102E] mb-1 drop-shadow-md">
+            Hello, I'm
+          </span>
 
-          {/* Headline */}
-          <motion.h1
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-[2.85rem] xl:text-[3.75rem] 2xl:text-7xl font-extrabold tracking-tight leading-[1.05] text-white font-display mb-6"
-            variants={itemVariants}
-          >
-            DESIGNING DIGITAL
-            <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/90 to-accentOrange">
-              EXPERIENCES
-            </span> THAT
-            <br />
-            PEOPLE REMEMBER
-          </motion.h1>
+          {/* Headline Name - ARAVIND RAMESH */}
+          <h1 className="font-bebas text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-white tracking-tight leading-[0.9] mb-4">
+            ARAVIND<br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/70">
+              RAMESH
+            </span>
+          </h1>
 
-          {/* Subtext */}
-          <motion.p
-            className="text-base sm:text-lg text-white/60 max-w-xl mb-8 leading-relaxed"
-            variants={itemVariants}
-          >
-            {subTagline}
-          </motion.p>
+          {/* Subheading Roles */}
+          <div className="flex flex-col gap-1.5 mb-5">
+            <div className="flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#C8102E]" />
+              <span className="text-xs sm:text-sm font-semibold tracking-widest uppercase text-[#C8102E]">
+                UI / UX Designer
+              </span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-white/40" />
+              <span className="text-xs sm:text-sm font-medium tracking-widest uppercase text-white/80">
+                Graphic Designer
+              </span>
+            </div>
+          </div>
+
+          {/* Description Paragraph */}
+          <p className="text-xs sm:text-sm text-white/60 leading-relaxed max-w-md mb-8">
+            I design beautiful digital experiences, modern interfaces, 3D graphics, and branding with strategic visual excellence.
+          </p>
 
           {/* CTA Buttons */}
-          <motion.div
-            className="flex flex-wrap gap-4 items-center"
-            variants={itemVariants}
-          >
+          <div className="flex flex-wrap items-center gap-4 mb-4">
             <a
               href="#projects"
-              className="px-8 py-4 rounded-full bg-white text-black font-semibold text-sm tracking-wider hover:bg-accentOrange hover:text-white transition-all duration-300 transform hover:scale-[1.03] shadow-lg shadow-white/5"
+              className="px-8 py-4 rounded-full bg-[#C8102E] text-white font-bebas text-lg tracking-widest hover:bg-[#E50914] transition-all duration-300 transform hover:scale-105 shadow-red-glow flex items-center gap-2 group"
             >
-              View Projects
+              <span>VIEW PORTFOLIO</span>
+              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
             </a>
-            <a
-              href="#contact"
-              className="px-8 py-4 rounded-full bg-transparent text-white font-semibold text-sm tracking-wider border border-white/20 hover:border-accentOrange hover:bg-white/5 transition-all duration-300 transform hover:scale-[1.03]"
-            >
-              Let's Collaborate
-            </a>
-          </motion.div>
-        </motion.div>
-
-        {/* Right Side Portrait */}
-        <motion.div
-          className="lg:col-span-5 flex justify-center items-center relative"
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
-        >
-          {/* Animated decorative glowing circle behind the portrait */}
-          <div className="absolute -top-12 -left-12 w-72 h-72 rounded-full bg-accentOrange/10 blur-[120px] pointer-events-none" />
-          <div className="absolute -bottom-12 -right-12 w-72 h-72 rounded-full bg-white/5 blur-[120px] pointer-events-none" />
-
-          {/* Portrait Container */}
-          <div className="relative w-full max-w-[420px] lg:max-w-[340px] xl:max-w-[420px] aspect-[4/5] rounded-[2rem] overflow-hidden glass-panel p-3">
-            <div className="w-full h-full rounded-[1.8rem] overflow-hidden relative group">
-              <motion.img
-                src={avatar}
-                alt={name}
-                className="w-full h-full object-cover filter brightness-[0.85] transition-all duration-700 group-hover:scale-105"
-                initial={{ scale: 1.1 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 1.2 }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0B] via-transparent to-transparent opacity-60" />
-            </div>
-
-            {/* Floating Achievement Badge */}
-            <motion.div
-              className="absolute -bottom-4 -left-4 md:-left-8 bg-black/85 backdrop-blur-md border border-white/10 px-5 py-4 rounded-2xl flex items-center gap-3 shadow-glass"
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 1, duration: 0.8 }}
-              whileHover={{ y: -5 }}
-            >
-              <div className="w-10 h-10 rounded-full bg-accentOrange/25 border border-accentOrange/50 flex items-center justify-center text-accentOrange text-sm font-bold">
-                50+
-              </div>
-              <div className="flex flex-col text-left">
-                <span className="text-xs font-semibold text-white tracking-wide">Projects Delivered</span>
-                <span className="text-[10px] text-white/50">Across Web & Mobile</span>
-              </div>
-            </motion.div>
           </div>
         </motion.div>
-      </div>
 
-      {/* Social Links - Fixed on Right (for Desktop) and Absolute for Mobile Layout */}
-      <div className="hidden lg:flex fixed right-10 bottom-16 flex-col items-center gap-6 z-40">
-        <div className="w-[1px] h-20 bg-white/20 mb-2" />
-        {portfolioData.socials.map((social) => (
-          <a
-            key={social.name}
-            href={social.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xs uppercase tracking-[0.25em] text-white/40 hover:text-accentOrange transition-all duration-300 py-2 hover:-translate-x-1"
-            style={{ writingMode: 'vertical-rl' }}
-          >
-            {social.name}
-          </a>
-        ))}
-      </div>
-
-      {/* Scroll Down Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/30 z-10 pointer-events-none">
-        <span className="text-[10px] uppercase tracking-[0.3em]">Scroll</span>
+        {/* Center Portrait Image (Overlapping 'PORTFOLIO' text with z-20) */}
         <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.7, ease: 'easeOut' }}
+          style={{
+            rotateX: tilt.y,
+            rotateY: tilt.x,
+            transformStyle: 'preserve-3d',
+          }}
+          className="lg:col-span-5 flex justify-center items-center relative my-6 lg:my-0 group z-20"
         >
-          <ArrowDown size={14} className="text-white/40" />
+          {/* Outer Frame Container */}
+          <div className="relative w-full max-w-[340px] sm:max-w-[400px] lg:max-w-[420px] aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl transition-transform duration-500">
+            
+            {/* Dark Gradient Backdrop */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-90 z-10" />
+
+            {/* Portrait Image (Overlaps PORTFOLIO background text) */}
+            <img
+              src="/assets/aravind.png"
+              alt="Aravind Ramesh"
+              className="w-full h-full object-cover filter brightness-[0.9] contrast-[1.05] transition-transform duration-500 group-hover:scale-105"
+              loading="eager"
+            />
+
+            {/* Bottom Dark Fade into background */}
+            <div className="absolute bottom-0 left-0 right-0 h-36 bg-gradient-to-t from-[#050505] via-[#050505]/70 to-transparent z-10" />
+          </div>
+
+          {/* Floating Aesthetic Badge */}
+          <div className="hidden sm:flex absolute right-[-10px] md:right-[-30px] top-1/2 -translate-y-1/2 max-w-[210px] glass-panel-red p-4 rounded-2xl border border-[#C8102E]/30 shadow-glass z-30 items-center gap-3">
+            <div className="w-9 h-9 rounded-full bg-[#C8102E]/30 border border-[#C8102E] flex items-center justify-center text-[#C8102E] shrink-0">
+              <Sparkles size={16} />
+            </div>
+            <p className="text-[11px] text-white/80 leading-snug font-medium">
+              Turning ideas into powerful digital experiences.
+            </p>
+          </div>
         </motion.div>
+
+        {/* Right Side Vertical Statistics */}
+        <motion.div
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          className="lg:col-span-3 flex flex-row lg:flex-col justify-around lg:justify-center items-center lg:items-end gap-8 lg:text-right border-t lg:border-t-0 lg:border-l border-white/10 pt-6 lg:pt-0 lg:pl-8 z-20"
+        >
+          {/* Stat 1 */}
+          <div className="flex flex-col items-center lg:items-end">
+            <span className="font-bebas text-5xl sm:text-6xl lg:text-7xl text-[#C8102E] leading-none drop-shadow-md">
+              <AnimatedCounter value={3} suffix="+" />
+            </span>
+            <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-white/60 mt-1">
+              Years Experience
+            </span>
+          </div>
+
+          <div className="hidden lg:block w-12 h-[1px] bg-white/10 my-2" />
+
+          {/* Stat 2 */}
+          <div className="flex flex-col items-center lg:items-end">
+            <span className="font-bebas text-5xl sm:text-6xl lg:text-7xl text-white leading-none drop-shadow-md">
+              <AnimatedCounter value={40} suffix="+" />
+            </span>
+            <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-white/60 mt-1">
+              Projects Completed
+            </span>
+          </div>
+        </motion.div>
+
+      </div>
+
+      {/* Bottom Scroll Indicator */}
+      <div className="w-full flex justify-center z-20 pt-4">
+        <a
+          href="#about"
+          className="flex flex-col items-center gap-1.5 text-white/40 hover:text-[#C8102E] transition-colors group"
+        >
+          <span className="text-[9px] uppercase tracking-[0.3em] font-semibold">
+            SCROLL DOWN
+          </span>
+          <motion.div
+            animate={{ y: [0, 6, 0] }}
+            transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
+          >
+            <ChevronDown size={18} className="group-hover:text-[#C8102E]" />
+          </motion.div>
+        </a>
       </div>
     </section>
   );

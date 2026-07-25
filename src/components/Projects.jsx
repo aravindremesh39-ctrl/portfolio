@@ -1,112 +1,143 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { ArrowUpRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { Folder, ExternalLink, ArrowRight, Eye } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
 const Projects = () => {
-  return (
-    <section
-      id="projects"
-      className="relative py-24 md:py-32 bg-[#0B0B0B]"
-    >
-      {/* Background radial highlight */}
-      <div className="absolute left-0 bottom-1/4 w-96 h-96 rounded-full bg-accentOrange/5 blur-[150px] pointer-events-none" />
+  const [selectedFilter, setSelectedFilter] = useState('All');
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 z-10 relative">
+  // Categories
+  const filterCategories = ['All', 'Posters', 'Branding', 'UI/UX', '2D Design', '3D Design', 'Animation'];
+
+  const filteredProjects = selectedFilter === 'All'
+    ? portfolioData.projects
+    : portfolioData.projects.filter(p => p.category.toLowerCase() === selectedFilter.toLowerCase() || p.category.toLowerCase().includes(selectedFilter.toLowerCase()));
+
+  return (
+    <section id="projects" className="relative py-24 bg-[#050505] overflow-hidden">
+      {/* Glow Effects */}
+      <div className="absolute top-1/4 right-0 w-96 h-96 bg-[#C8102E]/15 rounded-full blur-[160px] pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         
-        {/* Section Label & Subtitle Grid */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
-          <div className="text-left">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6 }}
-              className="text-xs uppercase tracking-[0.25em] text-accentOrange mb-4 flex items-center gap-3 font-semibold"
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-accentOrange" />
-              03 / CASE STUDIES
-            </motion.div>
-            <motion.h2
-              className="text-3xl md:text-5xl font-extrabold text-white font-display"
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8 }}
-            >
-              Selected Works
-            </motion.h2>
-          </div>
-          <motion.p
-            className="text-white/40 text-sm md:text-base font-light tracking-wide max-w-xs text-left"
-            initial={{ opacity: 0, y: 20 }}
+        {/* Section Header */}
+        <div className="flex flex-col items-center text-center mb-12">
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#C8102E]/10 border border-[#C8102E]/30 mb-4"
           >
-            Delivering high-aesthetic digital design solutions that elevate brand presence.
-          </motion.p>
+            <Folder size={14} className="text-[#C8102E]" />
+            <span className="text-xs uppercase tracking-[0.2em] font-semibold text-[#C8102E]">
+              FEATURED PORTFOLIO
+            </span>
+          </motion.div>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="font-bebas text-4xl sm:text-5xl md:text-6xl text-white tracking-tight leading-none"
+          >
+            SELECTED <span className="text-[#C8102E]">PROJECTS</span>
+          </motion.h2>
+
+          {/* Filtering Tabs */}
+          <div className="flex flex-wrap justify-center gap-2 mt-8">
+            {filterCategories.map((filter) => (
+              <button
+                key={filter}
+                onClick={() => setSelectedFilter(filter)}
+                className={`px-5 py-2 rounded-full text-xs font-semibold tracking-wider uppercase transition-all duration-300 ${
+                  selectedFilter === filter
+                    ? 'bg-[#C8102E] text-white shadow-red-glow scale-105'
+                    : 'bg-white/5 border border-white/10 text-white/60 hover:text-white hover:bg-white/10'
+                }`}
+              >
+                {filter}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
-          {portfolioData.projects.map((project, idx) => (
-            <motion.div
-              key={project.id}
-              className="group flex flex-col glass-panel p-4 rounded-[2.5rem] hover:bg-white/[0.04] transition-colors duration-500 shadow-glass"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.8, delay: idx * 0.15, ease: [0.16, 1, 0.3, 1] }}
-            >
-              {/* Image Frame with Zoom Parallax Hover */}
-              <div className="w-full aspect-[4/3] rounded-[2rem] overflow-hidden relative bg-black/40">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover filter brightness-[0.9] group-hover:scale-105 transition-all duration-700 ease-[0.16, 1, 0.3, 1]"
-                />
-                
-                {/* Floating View Arrow on hover */}
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-350 flex items-center justify-center backdrop-blur-[2px]">
-                  <motion.a
-                    href="#contact"
-                    className="w-14 h-14 rounded-full bg-white text-black flex items-center justify-center shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 ease-[0.16, 1, 0.3, 1]"
-                    whileHover={{ scale: 1.1 }}
-                  >
-                    <ArrowUpRight size={20} strokeWidth={2.5} />
-                  </motion.a>
-                </div>
-              </div>
-
-              {/* Metadata Details */}
-              <div className="p-4 flex flex-col text-left flex-grow justify-between">
-                <div>
-                  <div className="flex justify-between items-center text-xs tracking-widest text-white/40 uppercase mb-3">
-                    <span>{project.category}</span>
-                    <span className="font-display text-accentOrange">{project.year}</span>
+        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <AnimatePresence>
+            {filteredProjects.map((project) => (
+              <motion.div
+                key={project.id}
+                layout
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.3 }}
+                className="group relative glass-card rounded-2xl overflow-hidden border border-white/10 hover:border-[#C8102E]/50 flex flex-col justify-between"
+              >
+                {/* Thumbnail Container */}
+                <Link to={`/projects/${project.slug}`} className="relative aspect-[16/10] overflow-hidden bg-black/40 block">
+                  <img
+                    src={project.coverImage}
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  {/* Category Pill Badge */}
+                  <div className="absolute top-4 left-4 z-20 px-3 py-1 rounded-full bg-[#050505]/80 backdrop-blur-md border border-white/15 text-[10px] uppercase tracking-widest font-semibold text-[#C8102E]">
+                    {project.category}
                   </div>
 
-                  <h3 className="text-lg md:text-xl font-bold text-white font-display mb-3 leading-tight group-hover:text-accentOrange transition-colors duration-300">
-                    {project.title.split(' — ')[0]}
-                  </h3>
-                  
-                  <p className="text-white/50 text-xs md:text-sm leading-relaxed mb-6 font-light">
-                    {project.description}
-                  </p>
-                </div>
+                  {/* Hover Overlay */}
+                  <div className="absolute inset-0 bg-[#050505]/80 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3 z-10">
+                    <span className="px-5 py-2.5 rounded-full bg-[#C8102E] text-white font-bebas text-base tracking-widest flex items-center gap-2 shadow-red-glow">
+                      <span>VIEW CASE STUDY</span>
+                      <ArrowRight size={16} />
+                    </span>
+                  </div>
+                </Link>
 
-                <a
-                  href="#contact"
-                  className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-white/80 hover:text-accentOrange transition-colors border-t border-white/5 pt-4"
-                >
-                  View Details
-                  <ArrowUpRight size={14} />
-                </a>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+                {/* Content */}
+                <div className="p-6 flex flex-col justify-between flex-1">
+                  <div>
+                    <Link to={`/projects/${project.slug}`}>
+                      <h3 className="font-bebas text-2xl text-white tracking-wide group-hover:text-[#C8102E] transition-colors mb-2">
+                        {project.title}
+                      </h3>
+                    </Link>
+                    <p className="text-xs text-white/60 line-clamp-2 leading-relaxed mb-4">
+                      {project.description}
+                    </p>
+                  </div>
+
+                  {/* Tech Badges & View Link */}
+                  <div className="flex items-center justify-between pt-3 border-t border-white/5">
+                    <div className="flex flex-wrap gap-1.5">
+                      {project.tech.slice(0, 2).map((t) => (
+                        <span
+                          key={t}
+                          className="text-[10px] font-mono text-white/50 bg-white/5 px-2 py-0.5 rounded border border-white/5"
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+
+                    <Link
+                      to={`/projects/${project.slug}`}
+                      className="text-xs font-semibold text-[#C8102E] uppercase tracking-wider flex items-center gap-1 hover:underline"
+                    >
+                      <span>Details</span>
+                      <ArrowRight size={14} />
+                    </Link>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
+
       </div>
     </section>
   );

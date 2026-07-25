@@ -7,18 +7,25 @@ export default {
   theme: {
     extend: {
       colors: {
-        darkBg: '#0B0B0B',
-        accentOrange: '#FF7A00',
+        darkBg: '#050505',
+        cardBg: '#0C0C0E',
+        cardHover: '#141418',
+        accentRed: '#C8102E',
+        accentRedLight: '#E50914',
       },
       fontFamily: {
-        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-        display: ['"Syne"', 'sans-serif'],
+        bebas: ['"Bebas Neue"', 'sans-serif'],
+        poppins: ['"Poppins"', 'sans-serif'],
+        script: ['"Alex Brush"', 'cursive'],
+        sans: ['"Poppins"', 'sans-serif'],
       },
       boxShadow: {
-        'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
+        'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.5)',
+        'red-glow': '0 0 35px rgba(200, 16, 46, 0.35)',
+        'red-glow-lg': '0 0 70px rgba(200, 16, 46, 0.45)',
       },
       backdropBlur: {
-        'glass': '12px',
+        'glass': '16px',
       },
     },
   },
