@@ -1,3 +1,6 @@
+import { GalleryThumbnails } from "lucide-react";
+import { DiIllustrator } from "react-icons/di";
+
 export const portfolioData = {
   personalInfo: {
     name: "ARAVIND RAMESH",
@@ -41,23 +44,23 @@ export const portfolioData = {
         { name: "Adobe Photoshop", percentage: 95, icon: "Image" },
         { name: "Adobe XD", percentage: 90, icon: "Figma" },
         { name: "Adobe Illustrator", percentage: 94, icon: "PenTool" },
-        { name: "Adobe After Effects", percentage: 88, icon: "Film" },
-        { name: "Adobe Premiere Pro", percentage: 85, icon: "Video" },
+        { name: "Adobe After Effects", percentage: 80, icon: "Film" },
+        { name: "Adobe Premiere Pro", percentage: 80, icon: "Video" },
         { name: "Adobe Lightroom", percentage: 88, icon: "Sliders" }
       ]
     },
     {
       category: "Design Tools",
       items: [
-        { name: "Figma", percentage: 98, icon: "Figma" },
-        { name: "Canva", percentage: 90, icon: "Sparkles" }
+        { name: "Figma", percentage: 50, icon: "Figma" },
+        { name: "Canva", percentage: 50, icon: "Sparkles" }
       ]
     },
     {
       category: "3D Design",
       items: [
-        { name: "Blender", percentage: 88, icon: "Box" },
-        { name: "Autodesk Maya (3D Maya)", percentage: 85, icon: "Cpu" }
+        { name: "Blender", percentage: 50, icon: "Box" },
+        { name: "Autodesk Maya (3D Maya)", percentage: 50, icon: "Cpu" }
       ]
     }
   ],
@@ -69,7 +72,7 @@ export const portfolioData = {
       title: "Creative Designer",
       company: "KYURIUS TECH STUDIOS",
       location: "Bengaluru",
-      description: "Leading creative visual design, UI/UX interface architecture, branding systems, 3D assets, and marketing graphics for digital product ecosystems.",
+      description: "Creative visual design, UI/UX interface architecture, branding systems, 3D assets and marketing graphics for digital product ecosystems.",
       tags: ["UI/UX", "Graphic Design", "3D Design", "Branding"]
     }
   ],
@@ -89,14 +92,14 @@ export const portfolioData = {
       id: 1,
       slug: "neon-horizon-cyberpunk-poster",
       title: "Mothers Day POster Design",
-      category: "Posters",
+      category: "Graphic Design",
       year: "2026",
       client: "CyberPulse Media & Entertainment",
       duration: "2 Weeks",
       role: "Lead Graphic Artist & Illustrator",
       industry: "Entertainment & Gaming",
       tech: ["Adobe Photoshop", "Adobe Illustrator", "Lightroom"],
-      coverImage: "/assets/mother_s_day.jpg",
+      coverImage: ["/assets/mother_s_day.jpg"],
       description: "High-contrast editorial graphic poster design featuring custom typography and dark glowing neon aesthetics.",
       overview: "This Mother's Day poster features a silhouette of a mother holding her child, symbolizing love and care. A soft pink color palette, floral elements, hearts, and elegant typography create a warm and celebratory design, with the message Happy Mother's Day as the focal point.",
     
@@ -120,26 +123,22 @@ export const portfolioData = {
         "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1200&q=80",
         "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80"
       ],
-      liveUrl: "https://behance.net"
+      liveUrl: "https://www.behance.net/gallery/198382103/Mothers-Day"
     },
     {
       id: 2,
-      slug: "komorebi-brand-identity",
-      title: "Komorebi Visual Identity System",
-      category: "Branding",
+      slug: "Coffee Poster",
+      title: "Coffee Poster",
+      category: "Graphic Design",
       year: "2025",
-      client: "Komorebi Architectural Studio",
-      duration: "4 Weeks",
+      client: "Coffee Poster",
+    
       role: "Brand Identity Designer",
-      industry: "Architecture & Interior Design",
-      tech: ["Adobe Illustrator", "Adobe Photoshop", "Figma"],
-      coverImage: "https://images.unsplash.com/photo-1600132806370-bf17e65e942f?auto=format&fit=crop&w=1400&q=80",
-      description: "Complete visual identity, logo design, color guidelines, and print collateral for a modern architectural firm.",
+      industry: "Social Media Poster Design",
+      tech: ["Adobe Illustrator", "Adobe Photoshop"],
+      coverImage: ["/assets/coffeeposter.jpg"],
+      description: "A premium cold coffee promotional poster featuring rich chocolate tones, floating coffee beans, and bold typography to create a refreshing and eye-catching café advertisement.",
       overview: "Komorebi is a comprehensive brand identity system created for a high-end architectural firm. The identity captures organic minimalism, structural precision, and subtle luxury.",
-      objective: "Develop a timeless brand identity system including logo suites, typography rules, brand guideline books, and corporate stationery.",
-      challenge: "Translating architectural space and natural light into a clean, minimalist 2D logo identity that stands out in a crowded market.",
-      solution: "Created a geometric monogram paired with refined serif typography and a muted monochromatic palette with crimson accent highlights.",
-      outcome: "Successfully launched the new brand identity across digital and physical touchpoints, boosting brand recognition among premium clientele.",
       designProcess: [
         { step: "01", name: "Brand Discovery", desc: "Uncovering core brand values, target audience, and market positioning." },
         { step: "02", name: "Logo Exploration", desc: "Sketching over 50 logo concepts and geometric grid structures." },
@@ -161,18 +160,18 @@ export const portfolioData = {
     },
     {
       id: 3,
-      slug: "vespera-uiux-case-study",
-      title: "Vespera Luxury E-Commerce App",
-      category: "UI/UX",
-      year: "2026",
-      client: "Vespera Retail Inc.",
+      slug: "Cosmic Perfume – It's Perfect!",
+      title: "Cosmic Perfume – It's Perfect!",
+      category: "Graphic Design",
+      year: "2024",
+      client: "Cosmic Perfume – It's Perfect!",
       duration: "6 Weeks",
-      role: "Lead UI/UX Designer",
-      industry: "Luxury E-Commerce",
-      tech: ["Figma", "Adobe XD", "Adobe Photoshop"],
-      coverImage: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1400&q=80",
-      description: "Minimalist dark glassmorphism e-commerce mobile and web application interface design.",
-      overview: "Vespera is a luxury fashion e-commerce digital product designed to deliver an editorial shopping experience through dark mode glassmorphism and intuitive gesture controls.",
+      
+      industry: "Luxury Perfume",
+      tech: ["Adobe Photoshop"],
+      coverImage: ["/assets/banner.jpg"],
+      description: "A soft and elegant perfume promotional poster featuring a pastel pink theme, floral elements, and stylish typography to showcase a luxurious fragrance.",
+      overview: "This perfume advertisement is designed with a delicate pink color palette and lotus flowers to convey elegance, freshness, and femininity. The perfume bottle is the central focus, while the soft background and modern typography create a premium and sophisticated brand identity.",
       objective: "Redesign the mobile and web shopping experience to increase checkout conversion rates and elevate brand prestige.",
       challenge: "Maintaining high readability and fast navigation while incorporating rich dark mode visual aesthetics and glassmorphic overlays.",
       solution: "Architected a modular component library in Figma with strict WCAG contrast compliance, micro-animations, and seamless 3-step checkout flows.",
@@ -198,22 +197,19 @@ export const portfolioData = {
     },
     {
       id: 4,
-      slug: "vector-character-glyph-artwork",
-      title: "Vector Character & Glyph Artwork",
-      category: "2D Design",
-      year: "2025",
-      client: "Kyurius Media",
+      slug: "Kepler-452 B | Space Story",
+      title: "Kepler-452 B | Space Story",
+      category: "2D",
+      year: "2021",
+      
+      type:"video",
       duration: "3 Weeks",
-      role: "2D Artist & Illustrator",
-      industry: "Digital Illustration & Publishing",
-      tech: ["Adobe Illustrator", "Canva", "Adobe Photoshop"],
-      coverImage: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1400&q=80",
-      description: "Handcrafted 2D vector illustrations, iconography sets, and digital art compositions.",
+      role: "2D Animation",
+      industry: "Animation",
+      tech: ["Adobe Illustrator", "Adobe AfterEffect"],
+      coverImage: ["/assets/aravind_project_2.mp4"],
+      description: "A space story about Kepler-452 B",
       overview: "A series of custom 2D vector character illustrations and custom glyph symbol sets created for digital media applications and branding assets.",
-      objective: "Produce a set of unique vector illustrations with clean line art and vivid gradient fills suitable for scalability across all screen resolutions.",
-      challenge: "Creating detailed character expressions and complex geometric glyphs using minimal anchor points for optimal file performance.",
-      solution: "Utilized custom vector brushes and precision pen tool techniques in Adobe Illustrator to construct scalable SVG art sets.",
-      outcome: "Delivered a complete 50+ icon and character illustration package utilized across web and social campaigns.",
       designProcess: [
         { step: "01", name: "Concept Sketching", desc: "Hand-drawing character silhouettes and glyph variations." },
         { step: "02", name: "Vector Vectorization", desc: "Tracing and sculpting precise vector bezier curves in Illustrator." },
@@ -226,29 +222,25 @@ export const portfolioData = {
         { value: "Delivered", label: "On Schedule" }
       ],
       gallery: [
-        "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80",
-        "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=1200&q=80"
+        "/assets/coverImage.jp"
       ],
       liveUrl: "https://behance.net"
     },
     {
       id: 5,
-      slug: "scifi-mech-3d-environment",
-      title: "Sci-Fi Mech 3D Environment",
-      category: "3D Design",
-      year: "2025",
-      client: "Personal Showcase",
-      duration: "4 Weeks",
-      role: "3D Generalist & Environment Artist",
-      industry: "3D Graphics & Animation",
-      tech: ["Blender", "Autodesk Maya (3D Maya)", "Adobe Photoshop"],
-      coverImage: "https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=1400&q=80",
+      slug: "Endless Music World Website",
+      title: "Endless Music World Website | UIUX",
+      category: "UI/UX",
+      year: "2021",
+      
+      
+      role: "UI/UX Design",
+      industry: "Endless Music World Website",
+      tech: ["Adobe XD", "Adobe Photoshop", "Adobe illustrator"],
+      coverImage: ["/assets/endless.jpg", "/assets/Endles music W.jpg"],
+      behance_url:"https://www.behance.net/gallery/116556459/Endless-music-world-website",
       description: "Low-poly and high-poly 3D hard surface modeling, volumetric lighting, and realistic texture rendering.",
       overview: "Sci-Fi Mech Environment is a detailed 3D scene built in Blender and Maya. The project showcases complex hard-surface modeling, node-based procedural shaders, and cinematic volumetric lighting.",
-      objective: "To design and render a photorealistic 3D sci-fi hangar scene featuring a central robot mech with detailed surface wear and emission shaders.",
-      challenge: "Optimizing high-polygon geometry and complex PBR material maps while maintaining fast GPU render speeds.",
-      solution: "Utilized retopology techniques and UV texture packing in Maya along with Cycles renderer in Blender for realistic raytracing.",
-      outcome: "Produced 4K render stills and 360-degree turntable animations featured in 3D design showcases.",
       designProcess: [
         { step: "01", name: "Blockout", desc: "Establishing scale, camera angles, and primitive geometry blockouts." },
         { step: "02", name: "High-Poly Modeling", desc: "Sculpting mechanical details and hard surface panels in Maya & Blender." },
@@ -265,10 +257,44 @@ export const portfolioData = {
         "https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=1200&q=80",
         "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1200&q=80"
       ],
-      liveUrl: "https://behance.net"
+      
     },
     {
       id: 6,
+      slug: "dynamic-logo-intro-motion-reel",
+      title: "Fantacy-Ecommerce Shopping App UI Design",
+      category: "UI/UX",
+      year: "2021",
+      duration: "2 Weeks",
+      role: "UI/UX Designer",
+      tech: ["Adobe XD", "Adobe Photoshop", "Adobe illustrator"],
+      coverImage: ["/assets/UI mockup.jpg"],
+      description: "Fantacy-Ecommerce Shopping App UI Design",
+      overview: "A dynamic 60fps motion graphics reel featuring 2D/3D logo animation reveals, liquid morphing transitions, and kinetic typography for digital marketing campaigns.",
+      objective: "Create an energetic 30-second motion intro video to serve as a brand sting across digital media platforms.",
+      challenge: "Syncing intricate visual keyframe effects precisely to custom sound design cues for maximum impact.",
+      solution: "Built custom shape layer animations and graph editor velocity curves in After Effects synchronized with multi-track audio in Premiere Pro.",
+      outcome: "Delivered Lottie JSON micro-animations for web app integration and 4K MP4 video stings for social broadcasting.",
+      designProcess: [
+        { step: "01", name: "Storyboarding", desc: "Mapping visual keyframes and audio timing cues." },
+        { step: "02", name: "Asset Separation", desc: "Preparing layered vector files in Photoshop & Illustrator." },
+        { step: "03", name: "Keyframe Animation", desc: "Animating curves, speed graphs, and particle effects in After Effects." },
+        { step: "04", name: "Sound Design & Editing", desc: "Mixing audio sound effects and musical hits in Premiere Pro." },
+        { step: "05", name: "Multi-Format Export", desc: "Exporting MP4, WebM, and Lottie JSON files." }
+      ],
+      results: [
+        { value: "60 FPS", label: "Ultra Smooth Motion" },
+        { value: "Lottie JSON", label: "Web Animation Export" },
+        { value: "Multi-Platform", label: "Social & App Ready" }
+      ],
+      gallery: [
+        "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=1200&q=80"
+      ],
+      liveUrl: "https://behance.net"
+    },
+ {
+      id: 7,
       slug: "dynamic-logo-intro-motion-reel",
       title: "Dynamic Logo Intro & Motion Reel",
       category: "Animation",
@@ -302,6 +328,150 @@ export const portfolioData = {
         "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=1200&q=80"
       ],
       liveUrl: "https://behance.net"
-    }
+    },
+     {
+      id: 8,
+      slug: "dynamic-logo-intro-motion-reel",
+      title: "Dynamic Logo Intro & Motion Reel",
+      category: "Animation",
+      year: "2026",
+      client: "Kyurius Tech Studios",
+      duration: "2 Weeks",
+      role: "Motion Designer",
+      industry: "Video & Motion Graphics",
+      tech: ["Adobe After Effects", "Adobe Premiere Pro", "Adobe Photoshop"],
+      coverImage: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1400&q=80",
+      description: "Smooth 60fps kinetic typography, logo animation intros, and promo video edits.",
+      overview: "A dynamic 60fps motion graphics reel featuring 2D/3D logo animation reveals, liquid morphing transitions, and kinetic typography for digital marketing campaigns.",
+      objective: "Create an energetic 30-second motion intro video to serve as a brand sting across digital media platforms.",
+      challenge: "Syncing intricate visual keyframe effects precisely to custom sound design cues for maximum impact.",
+      solution: "Built custom shape layer animations and graph editor velocity curves in After Effects synchronized with multi-track audio in Premiere Pro.",
+      outcome: "Delivered Lottie JSON micro-animations for web app integration and 4K MP4 video stings for social broadcasting.",
+      designProcess: [
+        { step: "01", name: "Storyboarding", desc: "Mapping visual keyframes and audio timing cues." },
+        { step: "02", name: "Asset Separation", desc: "Preparing layered vector files in Photoshop & Illustrator." },
+        { step: "03", name: "Keyframe Animation", desc: "Animating curves, speed graphs, and particle effects in After Effects." },
+        { step: "04", name: "Sound Design & Editing", desc: "Mixing audio sound effects and musical hits in Premiere Pro." },
+        { step: "05", name: "Multi-Format Export", desc: "Exporting MP4, WebM, and Lottie JSON files." }
+      ],
+      results: [
+        { value: "60 FPS", label: "Ultra Smooth Motion" },
+        { value: "Lottie JSON", label: "Web Animation Export" },
+        { value: "Multi-Platform", label: "Social & App Ready" }
+      ],
+      gallery: [
+        "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=1200&q=80"
+      ],
+      liveUrl: "https://behance.net"
+    },
+     {
+      id: 9,
+      slug: "dynamic-logo-intro-motion-reel",
+      title: "Dynamic Logo Intro & Motion Reel",
+      category: "Animation",
+      year: "2026",
+      client: "Kyurius Tech Studios",
+      duration: "2 Weeks",
+      role: "Motion Designer",
+      industry: "Video & Motion Graphics",
+      tech: ["Adobe After Effects", "Adobe Premiere Pro", "Adobe Photoshop"],
+      coverImage: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1400&q=80",
+      description: "Smooth 60fps kinetic typography, logo animation intros, and promo video edits.",
+      overview: "A dynamic 60fps motion graphics reel featuring 2D/3D logo animation reveals, liquid morphing transitions, and kinetic typography for digital marketing campaigns.",
+      objective: "Create an energetic 30-second motion intro video to serve as a brand sting across digital media platforms.",
+      challenge: "Syncing intricate visual keyframe effects precisely to custom sound design cues for maximum impact.",
+      solution: "Built custom shape layer animations and graph editor velocity curves in After Effects synchronized with multi-track audio in Premiere Pro.",
+      outcome: "Delivered Lottie JSON micro-animations for web app integration and 4K MP4 video stings for social broadcasting.",
+      designProcess: [
+        { step: "01", name: "Storyboarding", desc: "Mapping visual keyframes and audio timing cues." },
+        { step: "02", name: "Asset Separation", desc: "Preparing layered vector files in Photoshop & Illustrator." },
+        { step: "03", name: "Keyframe Animation", desc: "Animating curves, speed graphs, and particle effects in After Effects." },
+        { step: "04", name: "Sound Design & Editing", desc: "Mixing audio sound effects and musical hits in Premiere Pro." },
+        { step: "05", name: "Multi-Format Export", desc: "Exporting MP4, WebM, and Lottie JSON files." }
+      ],
+      results: [
+        { value: "60 FPS", label: "Ultra Smooth Motion" },
+        { value: "Lottie JSON", label: "Web Animation Export" },
+        { value: "Multi-Platform", label: "Social & App Ready" }
+      ],
+      gallery: [
+        "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=1200&q=80"
+      ],
+      liveUrl: "https://behance.net"
+    },
+     {
+      id: 10,
+      slug: "dynamic-logo-intro-motion-reel",
+      title: "Dynamic Logo Intro & Motion Reel",
+      category: "Animation",
+      year: "2026",
+      client: "Kyurius Tech Studios",
+      duration: "2 Weeks",
+      role: "Motion Designer",
+      industry: "Video & Motion Graphics",
+      tech: ["Adobe After Effects", "Adobe Premiere Pro", "Adobe Photoshop"],
+      coverImage: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1400&q=80",
+      description: "Smooth 60fps kinetic typography, logo animation intros, and promo video edits.",
+      overview: "A dynamic 60fps motion graphics reel featuring 2D/3D logo animation reveals, liquid morphing transitions, and kinetic typography for digital marketing campaigns.",
+      objective: "Create an energetic 30-second motion intro video to serve as a brand sting across digital media platforms.",
+      challenge: "Syncing intricate visual keyframe effects precisely to custom sound design cues for maximum impact.",
+      solution: "Built custom shape layer animations and graph editor velocity curves in After Effects synchronized with multi-track audio in Premiere Pro.",
+      outcome: "Delivered Lottie JSON micro-animations for web app integration and 4K MP4 video stings for social broadcasting.",
+      designProcess: [
+        { step: "01", name: "Storyboarding", desc: "Mapping visual keyframes and audio timing cues." },
+        { step: "02", name: "Asset Separation", desc: "Preparing layered vector files in Photoshop & Illustrator." },
+        { step: "03", name: "Keyframe Animation", desc: "Animating curves, speed graphs, and particle effects in After Effects." },
+        { step: "04", name: "Sound Design & Editing", desc: "Mixing audio sound effects and musical hits in Premiere Pro." },
+        { step: "05", name: "Multi-Format Export", desc: "Exporting MP4, WebM, and Lottie JSON files." }
+      ],
+      results: [
+        { value: "60 FPS", label: "Ultra Smooth Motion" },
+        { value: "Lottie JSON", label: "Web Animation Export" },
+        { value: "Multi-Platform", label: "Social & App Ready" }
+      ],
+      gallery: [
+        "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=1200&q=80"
+      ],
+      liveUrl: "https://behance.net"
+    },
+     {
+      id: 11,
+      slug: "dynamic-logo-intro-motion-reel",
+      title: "Dynamic Logo Intro & Motion Reel",
+      category: "Animation",
+      year: "2026",
+      client: "Kyurius Tech Studios",
+      duration: "2 Weeks",
+      role: "Motion Designer",
+      industry: "Video & Motion Graphics",
+      tech: ["Adobe After Effects", "Adobe Premiere Pro", "Adobe Photoshop"],
+      coverImage: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1400&q=80",
+      description: "Smooth 60fps kinetic typography, logo animation intros, and promo video edits.",
+      overview: "A dynamic 60fps motion graphics reel featuring 2D/3D logo animation reveals, liquid morphing transitions, and kinetic typography for digital marketing campaigns.",
+      objective: "Create an energetic 30-second motion intro video to serve as a brand sting across digital media platforms.",
+      challenge: "Syncing intricate visual keyframe effects precisely to custom sound design cues for maximum impact.",
+      solution: "Built custom shape layer animations and graph editor velocity curves in After Effects synchronized with multi-track audio in Premiere Pro.",
+      outcome: "Delivered Lottie JSON micro-animations for web app integration and 4K MP4 video stings for social broadcasting.",
+      designProcess: [
+        { step: "01", name: "Storyboarding", desc: "Mapping visual keyframes and audio timing cues." },
+        { step: "02", name: "Asset Separation", desc: "Preparing layered vector files in Photoshop & Illustrator." },
+        { step: "03", name: "Keyframe Animation", desc: "Animating curves, speed graphs, and particle effects in After Effects." },
+        { step: "04", name: "Sound Design & Editing", desc: "Mixing audio sound effects and musical hits in Premiere Pro." },
+        { step: "05", name: "Multi-Format Export", desc: "Exporting MP4, WebM, and Lottie JSON files." }
+      ],
+      results: [
+        { value: "60 FPS", label: "Ultra Smooth Motion" },
+        { value: "Lottie JSON", label: "Web Animation Export" },
+        { value: "Multi-Platform", label: "Social & App Ready" }
+      ],
+      gallery: [
+        "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=1200&q=80"
+      ],
+      liveUrl: "https://behance.net"
+    },
   ]
 };

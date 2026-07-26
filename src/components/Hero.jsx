@@ -77,9 +77,9 @@ const Hero = () => {
       {/* Massive Background Typography 'PORTFOLIO' (Strictly behind Hero Image: z-0) */}
       <motion.div
         style={{ y: smoothYParallax }}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center pointer-events-none z-0 overflow-hidden"
+        className="absolute bottom-0 w-full text-center pointer-events-none z-0 overflow-hidden"
       >
-        <h1 className="font-bebas text-[22vw] sm:text-[20vw] font-extrabold tracking-tighter text-[#C8102E] opacity-[0.24] leading-none select-none drop-shadow-2xl">
+        <h1 className="font-bebas text-[22vw] sm:text-[20vw] font-extrabold tracking-wider text-[#C8102E] opacity-[0.05] leading-none select-none drop-shadow-2xl">
           PORTFOLIO
         </h1>
       </motion.div>
@@ -150,7 +150,7 @@ const Hero = () => {
 
             {/* Portrait Image (Overlaps PORTFOLIO background text) */}
             <img
-              src="/assets/aravind.png"
+              src="/assets/aravind2.png"
               alt="Aravind Ramesh"
               className="w-full  h-full p-8 object-cover filter brightness-[0.9] contrast-[1.05] transition-transform duration-500 group-hover:scale-105"
               loading="eager"

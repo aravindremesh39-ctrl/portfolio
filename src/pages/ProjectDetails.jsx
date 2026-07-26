@@ -1,8 +1,8 @@
 
 import { useParams, Link, useNavigate } from 'react-router-dom';
 
-import { 
-  ArrowLeft, ArrowRight, ExternalLink, Calendar, User, Clock, 
+import {
+  ArrowLeft, ArrowRight, ExternalLink, Calendar, User, Clock,
   Briefcase, CheckCircle2, Sparkles, ChevronLeft, ChevronRight,
   Layers, Image, PenTool, Film, Video, Sliders, Figma, Box, Cpu, Layout
 } from 'lucide-react';
@@ -67,15 +67,15 @@ const ProjectDetails = () => {
 
   const [previewImage, setPreviewImage] = useState(null);
 
-   useEffect(() => {
-  const handleKeyDown = (e) => {
-    if (e.key === "Escape") setPreviewImage(null);
-  };
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") setPreviewImage(null);
+    };
 
-  window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keydown", handleKeyDown);
 
-  return () => window.removeEventListener("keydown", handleKeyDown);
-}, []);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   return (
     <motion.div
@@ -107,7 +107,7 @@ const ProjectDetails = () => {
 
       {/* Main Container */}
       <main className="relative z-10 max-w-6xl mx-auto px-6 md:px-12 py-12 space-y-16">
-        
+
         {/* ================= HERO SECTION ================= */}
         <div className="space-y-6">
           <div className="flex flex-wrap items-center gap-3">
@@ -128,58 +128,77 @@ const ProjectDetails = () => {
           </p>
 
           {/* Large Hero Banner Image */}
-         <div className="relative h-[300px] w-full rounded-3xl overflow-hidden border border-white/10 shadow-glass group cursor-zoom-in"
-  onClick={() => setPreviewImage(project.coverImage)}
->
-  <img
-    src={project.coverImage}
-    alt={project.title}
-    className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
-  />
+          {project?.coverImage?.map((item) => (
+            <div className="relative h-[300px] w-full rounded-3xl overflow-hidden border border-white/10 shadow-glass group cursor-zoom-in"
+              onClick={() => setPreviewImage(item)}
+            >
+              {project?.type === 'video' ? (
+                <video
+                  className="w-full h-full object-contain"
+                  controls
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                >
+                  <source src={project?.coverImage} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              ) : (
 
-  <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-60" />
+                <img
+                  src={item}
+                  alt={project.title}
+                  className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
+                />
+              )}
 
-  {/* Hover Icon */}
-  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-    <div className="px-5 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm">
-      Click to Preview
-    </div>
-  </div>
-</div>
-<AnimatePresence>
-  {previewImage && (
-    <motion.div
-      className="fixed inset-0 z-[9999] bg-black/90 backdrop-blur-xl flex items-center justify-center p-8"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.25 }}
-      onClick={() => setPreviewImage(null)}
-    >
-      {/* Close Button */}
-      
 
-      {/* Image */}
-      <motion.img
-        src={previewImage}
-        alt="Preview"
-        initial={{ opacity: 0, scale: 0.8, y: 30 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.8 }}
-        transition={{
-          type: "spring",
-          stiffness: 120,
-          damping: 20,
-        }}
-        className="max-w-[70vw] max-h-[70vh] rounded-2xl shadow-2xl object-contain"
-        onClick={(e) => e.stopPropagation()}
-      />
-    </motion.div>
-  )}
-</AnimatePresence>
+              <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-60" />
+
+              {/* Hover Icon */}
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                <div className={`px-5 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm ${project.type === "video" ? "hidden" : "block"}`}>
+                  Click to Preview
+                </div>
+              </div>
+            </div>
+          ))}
+
+          <AnimatePresence>
+            {project.type !== "video" && previewImage && (
+              <motion.div
+                className="fixed inset-0 z-[9999] bg-black/90 backdrop-blur-xl flex items-center justify-center p-8"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25 }}
+                onClick={() => setPreviewImage(null)}
+              >
+                {/* Close Button */}
+
+
+                {/* Image */}
+                <motion.img
+                  src={previewImage}
+                  alt="Preview"
+                  initial={{ opacity: 0, scale: 0.8, y: 30 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 120,
+                    damping: 20,
+                  }}
+                  className="max-w-[70vw] max-h-[70vh] rounded-2xl shadow-2xl object-contain"
+                  onClick={(e) => e.stopPropagation()}
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
 
-        
+
 
         {/* ================= TOOLS USED BADGES ================= */}
         <div className="space-y-3">
@@ -211,34 +230,22 @@ const ProjectDetails = () => {
               <p>{project.overview || project.description}</p>
             </div>
 
-            
 
-          
 
-            <div>
-              <h3 className="text-base font-semibold text-white mb-2 uppercase tracking-wider text-[#C8102E]">FINAL OUTCOME</h3>
-              <p>{project.outcome}</p>
-            </div>
+
+
+
           </div>
         </div>
 
         {/* ================= DESIGN PROCESS TIMELINE ================= */}
-       
+
 
         {/* ================= PROJECT GALLERY WITH LIGHTBOX ================= */}
-        
+
 
         {/* ================= RESULTS & KEY METRICS ================= */}
-        {project.results && (
-          <div className="glass-card p-8 rounded-3xl border border-[#C8102E]/30 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
-            {project.results.map((res, idx) => (
-              <div key={idx} className="flex flex-col items-center">
-                <span className="font-bebas text-4xl sm:text-5xl text-[#C8102E] leading-none mb-1">{res.value}</span>
-                <span className="text-xs uppercase tracking-widest font-medium text-white/70">{res.label}</span>
-              </div>
-            ))}
-          </div>
-        )}
+
 
         {/* ================= PREVIOUS & NEXT PROJECT NAVIGATION ================= */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-10 border-t border-white/10">
