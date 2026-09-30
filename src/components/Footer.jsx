@@ -12,7 +12,7 @@ const Footer = () => {
         
         {/* Left Brand info */}
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-lg bg-[#C8102E] flex items-center justify-center font-bebas text-base text-white shadow-red-glow">
+          <div className="w-8 h-8 rounded-lg bg-[#FF7A00] flex items-center justify-center font-bebas text-base text-white shadow-orange-glow">
             AR
           </div>
           <span className="text-xs text-white/50 tracking-wider">
@@ -22,13 +22,13 @@ const Footer = () => {
 
         {/* Center Tagline */}
         <div className="text-xs text-white/40 uppercase tracking-widest font-mono text-center">
-          Designed & Developed with React, Vite & Tailwind CSS
+          Designed &amp; Developed with React, Vite &amp; Tailwind CSS
         </div>
 
         {/* Right Scroll to Top Button */}
         <button
           onClick={scrollToTop}
-          className="p-3 rounded-full bg-white/5 border border-white/10 text-white/70 hover:text-white hover:bg-[#C8102E] hover:border-[#C8102E] transition-all duration-300 transform hover:scale-110 shadow-md group"
+          className="p-3 rounded-full bg-white/5 border border-white/10 text-white/70 hover:text-white hover:bg-[#FF7A00] hover:border-[#FF7A00] transition-all duration-300 transform hover:scale-110 shadow-md group"
           title="Back to Top"
         >
           <ArrowUp size={18} className="group-hover:-translate-y-0.5 transition-transform" />

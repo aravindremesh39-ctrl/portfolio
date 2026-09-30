@@ -59,11 +59,11 @@ const ImageLightbox = ({ image, alt = 'Project image', onClose }) => {
             onClick={(e) => { e.stopPropagation(); onClose(); }}
             className="absolute top-5 right-5 sm:top-7 sm:right-7
                        w-11 h-11 rounded-full
-                       bg-white/10 hover:bg-[#C8102E]
-                       border border-white/20 hover:border-[#C8102E]
+                       bg-white/10 hover:bg-[#FF7A00]
+                       border border-white/20 hover:border-[#FF7A00]
                        text-white flex items-center justify-center
                        shadow-xl transition-colors duration-200
-                       focus:outline-none focus:ring-2 focus:ring-[#C8102E]"
+                       focus:outline-none focus:ring-2 focus:ring-[#FF7A00]"
             aria-label="Close lightbox"
           >
             <X size={20} strokeWidth={2.5} />
@@ -80,7 +80,7 @@ const ImageLightbox = ({ image, alt = 'Project image', onClose }) => {
             className="relative flex items-center justify-center
                        max-w-[92vw] max-h-[88vh]
                        rounded-2xl overflow-hidden"
-            style={{ boxShadow: '0 0 80px rgba(200,16,46,0.18), 0 40px 120px rgba(0,0,0,0.6)' }}
+            style={{ boxShadow: '0 0 80px rgba(255,122,0,0.18), 0 40px 120px rgba(0,0,0,0.6)' }}
           >
             <img
               src={image}

@@ -5,7 +5,7 @@ import Home from './pages/Home';
 import ProjectDetails from './pages/ProjectDetails';
 import CustomCursor from './components/CustomCursor';
 
-// Floating Red Ambient Particles Canvas
+// Floating Orange Ambient Particles Canvas
 const ParticleCanvas = () => {
   const canvasRef = useRef(null);
 
@@ -27,7 +27,7 @@ const ParticleCanvas = () => {
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
       radius: Math.random() * 1.5 + 0.5,
-      alpha: Math.random() * 0.4 + 0.1,
+      alpha: Math.random() * 0.35 + 0.08,
       speedX: (Math.random() - 0.5) * 0.3,
       speedY: (Math.random() - 0.5) * 0.3,
     }));
@@ -46,9 +46,9 @@ const ParticleCanvas = () => {
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(200, 16, 46, ${p.alpha})`;
+        ctx.fillStyle = `rgba(255, 122, 0, ${p.alpha})`;
         ctx.shadowBlur = 10;
-        ctx.shadowColor = '#C8102E';
+        ctx.shadowColor = '#FF7A00';
         ctx.fill();
       });
 
@@ -106,7 +106,7 @@ function App() {
 
   return (
     <Router>
-      <div className="relative bg-[#050505] text-white min-h-screen selection:bg-[#C8102E] selection:text-white font-poppins">
+      <div className="relative bg-[#0B0B0B] text-white min-h-screen selection:bg-[#FF7A00] selection:text-white font-poppins">
         {/* Premium Smooth Custom Cursor */}
         <CustomCursor />
 

@@ -44,7 +44,7 @@ const Navbar = () => {
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled
-            ? 'py-3.5 bg-[#050505]/80 backdrop-blur-xl border-b border-white/10 shadow-glass'
+            ? 'py-3.5 bg-[#0B0B0B]/85 backdrop-blur-xl border-b border-white/10 shadow-glass'
             : 'py-6 bg-transparent border-b border-white/5'
         }`}
       >
@@ -55,11 +55,11 @@ const Navbar = () => {
             href="#hero"
             className="flex items-center gap-2 group text-decoration-none"
           >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#C8102E] to-black border border-[#C8102E]/40 flex items-center justify-center font-bebas text-xl text-white tracking-widest shadow-red-glow group-hover:scale-105 transition-transform duration-300">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#FF7A00] to-[#C95F00] border border-[#FF7A00]/40 flex items-center justify-center font-bebas text-xl text-white tracking-widest shadow-orange-glow group-hover:scale-105 transition-transform duration-300">
               AR
             </div>
             <div className="flex flex-col text-left">
-              <span className="font-bebas text-lg tracking-wider text-white group-hover:text-[#C8102E] transition-colors leading-none">
+              <span className="font-bebas text-lg tracking-wider text-white group-hover:text-[#FF7A00] transition-colors leading-none">
                 ARAVIND RAMESH
               </span>
               <span className="text-[9px] uppercase tracking-widest text-white/40 leading-tight">
@@ -86,7 +86,7 @@ const Navbar = () => {
                   {isActive && (
                     <motion.div
                       layoutId="activeNavIndicator"
-                      className="absolute inset-0 bg-[#C8102E] rounded-full -z-10 shadow-red-glow"
+                      className="absolute inset-0 bg-[#FF7A00] rounded-full -z-10 shadow-orange-glow"
                       transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     />
                   )}
@@ -100,7 +100,7 @@ const Navbar = () => {
           <div className="hidden lg:flex items-center gap-4">
             <a
               href="#contact"
-              className="group relative px-6 py-2.5 rounded-full bg-gradient-to-r from-[#C8102E] to-[#900B20] text-white font-medium text-xs uppercase tracking-widest overflow-hidden shadow-red-glow hover:shadow-red-glow-lg transition-all duration-300 flex items-center gap-2 transform hover:-translate-y-0.5"
+              className="group relative px-6 py-2.5 rounded-full bg-gradient-to-r from-[#FF7A00] to-[#C95F00] text-white font-medium text-xs uppercase tracking-widest overflow-hidden shadow-orange-glow hover:shadow-orange-glow-lg transition-all duration-300 flex items-center gap-2 transform hover:-translate-y-0.5"
             >
               <span>Let's Talk</span>
               <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
@@ -111,7 +111,7 @@ const Navbar = () => {
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
-            className="lg:hidden p-2.5 rounded-xl bg-white/5 border border-white/10 text-white hover:text-[#C8102E] transition-colors"
+            className="lg:hidden p-2.5 rounded-xl bg-white/5 border border-white/10 text-white hover:text-[#FF7A00] transition-colors"
           >
             {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
@@ -126,7 +126,7 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-[#050505]/95 backdrop-blur-2xl pt-28 px-6 pb-12 flex flex-col justify-between lg:hidden"
+            className="fixed inset-0 z-40 bg-[#0B0B0B]/95 backdrop-blur-2xl pt-28 px-6 pb-12 flex flex-col justify-between lg:hidden"
           >
             <div className="flex flex-col gap-4">
               {navLinks.map((link, idx) => (
@@ -137,10 +137,10 @@ const Navbar = () => {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: idx * 0.05 }}
-                  className="font-bebas text-3xl tracking-wider text-white/80 hover:text-[#C8102E] transition-colors py-2 border-b border-white/5 flex items-center justify-between group"
+                  className="font-bebas text-3xl tracking-wider text-white/80 hover:text-[#FF7A00] transition-colors py-2 border-b border-white/5 flex items-center justify-between group"
                 >
                   <span>{link.name}</span>
-                  <ArrowUpRight size={20} className="text-white/30 group-hover:text-[#C8102E] group-hover:translate-x-1 transition-all" />
+                  <ArrowUpRight size={20} className="text-white/30 group-hover:text-[#FF7A00] group-hover:translate-x-1 transition-all" />
                 </motion.a>
               ))}
             </div>
@@ -149,7 +149,7 @@ const Navbar = () => {
               <a
                 href="#contact"
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-full py-4 rounded-xl bg-[#C8102E] text-white font-bebas text-xl text-center tracking-widest shadow-red-glow"
+                className="w-full py-4 rounded-xl bg-[#FF7A00] text-white font-bebas text-xl text-center tracking-widest shadow-orange-glow"
               >
                 LET'S TALK
               </a>

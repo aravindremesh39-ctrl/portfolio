@@ -55,16 +55,16 @@ const Contact = () => {
           particleCount: 80,
           spread: 70,
           origin: { y: 0.6 },
-          colors: ['#C8102E', '#FFFFFF', '#E50914']
+          colors: ['#FF7A00', '#FFFFFF', '#FF8A1F']
         });
       } catch (_) {}
     }, 500);
   };
 
   return (
-    <section id="contact" className="relative py-28 bg-[#050505] overflow-hidden">
+    <section id="contact" className="relative py-28 bg-[#0B0B0B] overflow-hidden">
       {/* Glow Effects */}
-      <div className="absolute top-1/2 right-0 w-96 h-96 bg-[#C8102E]/15 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute top-1/2 right-0 w-96 h-96 bg-[#FF7A00]/15 rounded-full blur-[160px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         
@@ -74,10 +74,10 @@ const Contact = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#C8102E]/10 border border-[#C8102E]/30 mb-4"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FF7A00]/10 border border-[#FF7A00]/30 mb-4"
           >
-            <Mail size={14} className="text-[#C8102E]" />
-            <span className="text-xs uppercase tracking-[0.2em] font-semibold text-[#C8102E]">
+            <Mail size={14} className="text-[#FF7A00]" />
+            <span className="text-xs uppercase tracking-[0.2em] font-semibold text-[#FF7A00]">
               GET IN TOUCH
             </span>
           </motion.div>
@@ -89,7 +89,7 @@ const Contact = () => {
             transition={{ delay: 0.1 }}
             className="font-bebas text-4xl sm:text-5xl md:text-6xl text-white tracking-tight leading-none"
           >
-            LET'S WORK <span className="text-[#C8102E]">TOGETHER</span>
+            LET'S WORK <span className="text-[#FF7A00]">TOGETHER</span>
           </motion.h2>
           <p className="text-sm text-white/60 max-w-lg mt-3">
             Have a project in mind or want to collaborate? Send a message and let me create something extraordinary for you.
@@ -117,32 +117,32 @@ const Contact = () => {
 
               {/* Info Items */}
               <div className="flex flex-col gap-6 mb-10">
-                <div className="flex items-center gap-4 p-4 rounded-2xl glass-card border border-white/10 hover:border-[#C8102E]/40 transition-colors">
-                  <div className="w-12 h-12 rounded-xl bg-[#C8102E]/15 border border-[#C8102E]/30 flex items-center justify-center text-[#C8102E] shrink-0">
+                <div className="flex items-center gap-4 p-4 rounded-2xl glass-card border border-white/10 hover:border-[#FF7A00]/40 transition-colors">
+                  <div className="w-12 h-12 rounded-xl bg-[#FF7A00]/15 border border-[#FF7A00]/30 flex items-center justify-center text-[#FF7A00] shrink-0">
                     <Mail size={20} />
                   </div>
                   <div className="flex flex-col text-left">
                     <span className="text-[10px] uppercase tracking-widest text-white/40 font-semibold">EMAIL</span>
-                    <a href={`mailto:${email}`} className="text-sm sm:text-base font-semibold text-white hover:text-[#C8102E] transition-colors">
+                    <a href={`mailto:${email}`} className="text-sm sm:text-base font-semibold text-white hover:text-[#FF7A00] transition-colors">
                       {email}
                     </a>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-4 p-4 rounded-2xl glass-card border border-white/10 hover:border-[#C8102E]/40 transition-colors">
-                  <div className="w-12 h-12 rounded-xl bg-[#C8102E]/15 border border-[#C8102E]/30 flex items-center justify-center text-[#C8102E] shrink-0">
+                <div className="flex items-center gap-4 p-4 rounded-2xl glass-card border border-white/10 hover:border-[#FF7A00]/40 transition-colors">
+                  <div className="w-12 h-12 rounded-xl bg-[#FF7A00]/15 border border-[#FF7A00]/30 flex items-center justify-center text-[#FF7A00] shrink-0">
                     <Phone size={20} />
                   </div>
                   <div className="flex flex-col text-left">
                     <span className="text-[10px] uppercase tracking-widest text-white/40 font-semibold">PHONE / WHATSAPP</span>
-                    <a href={`tel:${phone}`} className="text-sm sm:text-base font-semibold text-white hover:text-[#C8102E] transition-colors">
+                    <a href={`tel:${phone}`} className="text-sm sm:text-base font-semibold text-white hover:text-[#FF7A00] transition-colors">
                       {phone}
                     </a>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-4 p-4 rounded-2xl glass-card border border-white/10 hover:border-[#C8102E]/40 transition-colors">
-                  <div className="w-12 h-12 rounded-xl bg-[#C8102E]/15 border border-[#C8102E]/30 flex items-center justify-center text-[#C8102E] shrink-0">
+                <div className="flex items-center gap-4 p-4 rounded-2xl glass-card border border-white/10 hover:border-[#FF7A00]/40 transition-colors">
+                  <div className="w-12 h-12 rounded-xl bg-[#FF7A00]/15 border border-[#FF7A00]/30 flex items-center justify-center text-[#FF7A00] shrink-0">
                     <MapPin size={20} />
                   </div>
                   <div className="flex flex-col text-left">
@@ -168,7 +168,7 @@ const Contact = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={s.name}
-                    className="w-11 h-11 rounded-xl glass-card border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-[#C8102E] hover:border-[#C8102E] transition-all duration-300 transform hover:scale-110 shadow-md"
+                    className="w-11 h-11 rounded-xl glass-card border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-[#FF7A00] hover:border-[#FF7A00] transition-all duration-300 transform hover:scale-110 shadow-md"
                   >
                     {socialIconMap[s.name] || <Sparkles size={18} />}
                   </a>
@@ -188,7 +188,7 @@ const Contact = () => {
           >
             {submitted ? (
               <div className="py-16 text-center flex flex-col items-center justify-center">
-                <div className="w-16 h-16 rounded-full bg-[#C8102E] text-white flex items-center justify-center mb-6 shadow-red-glow animate-bounce">
+                <div className="w-16 h-16 rounded-full bg-[#FF7A00] text-white flex items-center justify-center mb-6 shadow-orange-glow animate-bounce">
                   <CheckCircle2 size={32} />
                 </div>
                 <h3 className="font-bebas text-4xl text-white tracking-wide mb-2">
@@ -222,7 +222,7 @@ const Contact = () => {
                       value={formData.name}
                       onChange={handleChange}
                       placeholder="e.g. John Doe"
-                      className="w-full px-4 py-3.5 rounded-xl bg-white/[0.03] border border-white/10 text-white placeholder-white/20 focus:outline-none focus:border-[#C8102E] focus:ring-1 focus:ring-[#C8102E] transition-colors text-sm"
+                      className="w-full px-4 py-3.5 rounded-xl bg-white/[0.03] border border-white/10 text-white placeholder-white/20 focus:outline-none focus:border-[#FF7A00] focus:ring-1 focus:ring-[#FF7A00] transition-colors text-sm"
                     />
                   </div>
 
@@ -238,7 +238,7 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleChange}
                       placeholder="e.g. john@example.com"
-                      className="w-full px-4 py-3.5 rounded-xl bg-white/[0.03] border border-white/10 text-white placeholder-white/20 focus:outline-none focus:border-[#C8102E] focus:ring-1 focus:ring-[#C8102E] transition-colors text-sm"
+                      className="w-full px-4 py-3.5 rounded-xl bg-white/[0.03] border border-white/10 text-white placeholder-white/20 focus:outline-none focus:border-[#FF7A00] focus:ring-1 focus:ring-[#FF7A00] transition-colors text-sm"
                     />
                   </div>
                 </div>
@@ -255,7 +255,7 @@ const Contact = () => {
                     value={formData.subject}
                     onChange={handleChange}
                     placeholder="e.g. UI/UX Design Project Inquiry"
-                    className="w-full px-4 py-3.5 rounded-xl bg-white/[0.03] border border-white/10 text-white placeholder-white/20 focus:outline-none focus:border-[#C8102E] focus:ring-1 focus:ring-[#C8102E] transition-colors text-sm"
+                    className="w-full px-4 py-3.5 rounded-xl bg-white/[0.03] border border-white/10 text-white placeholder-white/20 focus:outline-none focus:border-[#FF7A00] focus:ring-1 focus:ring-[#FF7A00] transition-colors text-sm"
                   />
                 </div>
 
@@ -271,7 +271,7 @@ const Contact = () => {
                     value={formData.message}
                     onChange={handleChange}
                     placeholder="Describe your project goals, timelines, and requirements..."
-                    className="w-full px-4 py-3.5 rounded-xl bg-white/[0.03] border border-white/10 text-white placeholder-white/20 focus:outline-none focus:border-[#C8102E] focus:ring-1 focus:ring-[#C8102E] transition-colors text-sm resize-none"
+                    className="w-full px-4 py-3.5 rounded-xl bg-white/[0.03] border border-white/10 text-white placeholder-white/20 focus:outline-none focus:border-[#FF7A00] focus:ring-1 focus:ring-[#FF7A00] transition-colors text-sm resize-none"
                   />
                 </div>
 
@@ -279,7 +279,7 @@ const Contact = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-4 rounded-xl bg-[#C8102E] text-white font-bebas text-xl tracking-widest hover:bg-[#E50914] transition-all duration-300 shadow-red-glow flex items-center justify-center gap-3 disabled:opacity-50"
+                  className="w-full py-4 rounded-xl bg-[#FF7A00] text-white font-bebas text-xl tracking-widest hover:bg-[#FF8A1F] transition-all duration-300 shadow-orange-glow flex items-center justify-center gap-3 disabled:opacity-50"
                 >
                   {isSubmitting ? (
                     <span>SENDING MESSAGE...</span>

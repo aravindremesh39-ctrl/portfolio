@@ -45,12 +45,12 @@ const ProjectDetails = () => {
 
   if (!project) {
     return (
-      <div className="min-h-screen bg-[#050505] text-white flex flex-col items-center justify-center p-6 text-center">
-        <h2 className="font-bebas text-5xl text-[#C8102E] mb-4">PROJECT NOT FOUND</h2>
+      <div className="min-h-screen bg-[#0B0B0B] text-white flex flex-col items-center justify-center p-6 text-center">
+        <h2 className="font-bebas text-5xl text-[#FF7A00] mb-4">PROJECT NOT FOUND</h2>
         <p className="text-sm text-white/60 mb-8">The project case study you are looking for does not exist.</p>
         <Link
           to="/"
-          className="px-8 py-3.5 rounded-full bg-[#C8102E] text-white font-bebas text-lg tracking-widest hover:bg-[#E50914] transition-colors"
+          className="px-8 py-3.5 rounded-full bg-[#FF7A00] text-white font-bebas text-lg tracking-widest hover:bg-[#FF8A1F] transition-colors"
         >
           BACK TO PORTFOLIO
         </Link>
@@ -83,23 +83,23 @@ const ProjectDetails = () => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.4 }}
-      className="min-h-screen bg-[#050505] text-white selection:bg-[#C8102E] selection:text-white font-poppins relative"
+      className="min-h-screen bg-[#0B0B0B] text-white selection:bg-[#FF7A00] selection:text-white font-poppins relative"
     >
       {/* Background Radial Glow */}
-      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-[#C8102E]/10 rounded-full blur-[180px] pointer-events-none z-0" />
+      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-[#FF7A00]/10 rounded-full blur-[180px] pointer-events-none z-0" />
 
       {/* Navigation Header */}
-      <header className="sticky top-0 z-40 bg-[#050505]/80 backdrop-blur-xl border-b border-white/10 py-4 px-6 md:px-12">
+      <header className="sticky top-0 z-40 bg-[#0B0B0B]/80 backdrop-blur-xl border-b border-white/10 py-4 px-6 md:px-12">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <Link
             to="/"
-            className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-white/70 hover:text-[#C8102E] transition-colors group"
+            className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-white/70 hover:text-[#FF7A00] transition-colors group"
           >
             <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
             <span>BACK TO PROJECTS</span>
           </Link>
 
-          <Link to="/" className="font-bebas text-xl text-white tracking-widest hover:text-[#C8102E] transition-colors">
+          <Link to="/" className="font-bebas text-xl text-white tracking-widest hover:text-[#FF7A00] transition-colors">
             ARAVIND RAMESH
           </Link>
         </div>
@@ -111,7 +111,7 @@ const ProjectDetails = () => {
         {/* ================= HERO SECTION ================= */}
         <div className="space-y-6">
           <div className="flex flex-wrap items-center gap-3">
-            <span className="px-3.5 py-1 rounded-full bg-[#C8102E]/20 text-[#C8102E] border border-[#C8102E]/40 text-xs font-semibold uppercase tracking-widest">
+            <span className="px-3.5 py-1 rounded-full bg-[#FF7A00]/20 text-[#FF7A00] border border-[#FF7A00]/40 text-xs font-semibold uppercase tracking-widest">
               {project.category}
             </span>
             <span className="text-xs text-white/40 font-mono">
@@ -154,7 +154,7 @@ const ProjectDetails = () => {
               )}
 
 
-              <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-60" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0B] via-transparent to-transparent opacity-60" />
 
               {/* Hover Icon */}
               <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
@@ -175,9 +175,6 @@ const ProjectDetails = () => {
                 transition={{ duration: 0.25 }}
                 onClick={() => setPreviewImage(null)}
               >
-                {/* Close Button */}
-
-
                 {/* Image */}
                 <motion.img
                   src={previewImage}
@@ -202,14 +199,14 @@ const ProjectDetails = () => {
 
         {/* ================= TOOLS USED BADGES ================= */}
         <div className="space-y-3">
-          <span className="text-xs uppercase tracking-widest font-semibold text-white/50 block">SOFTWARE & TOOLS USED</span>
+          <span className="text-xs uppercase tracking-widest font-semibold text-white/50 block">SOFTWARE &amp; TOOLS USED</span>
           <div className="flex flex-wrap gap-3">
             {project.tech.map((tool) => (
               <div
                 key={tool}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-xs font-semibold text-white/90 hover:border-[#C8102E]/50 transition-colors"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-xs font-semibold text-white/90 hover:border-[#FF7A00]/50 transition-colors"
               >
-                <span className="text-[#C8102E]">{toolIconMap[tool] || <Sparkles size={16} />}</span>
+                <span className="text-[#FF7A00]">{toolIconMap[tool] || <Sparkles size={16} />}</span>
                 <span>{tool}</span>
               </div>
             ))}
@@ -220,21 +217,15 @@ const ProjectDetails = () => {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-start pt-6 border-t border-white/10">
           <div className="md:col-span-4">
             <h2 className="font-bebas text-3xl sm:text-4xl text-white tracking-wide leading-none sticky top-24">
-              PROJECT <span className="text-[#C8102E]">OVERVIEW</span>
+              PROJECT <span className="text-[#FF7A00]">OVERVIEW</span>
             </h2>
           </div>
 
           <div className="md:col-span-8 space-y-8 text-sm sm:text-base text-white/70 leading-relaxed font-light">
             <div>
-              <h3 className="text-base font-semibold text-white mb-2 uppercase tracking-wider text-[#C8102E]">OVERVIEW</h3>
+              <h3 className="text-base font-semibold text-white mb-2 uppercase tracking-wider text-[#FF7A00]">OVERVIEW</h3>
               <p>{project.overview || project.description}</p>
             </div>
-
-
-
-
-
-
           </div>
         </div>
 
@@ -251,31 +242,31 @@ const ProjectDetails = () => {
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-10 border-t border-white/10">
           <Link
             to={`/projects/${prevProject.slug}`}
-            className="w-full sm:w-auto px-6 py-4 rounded-2xl glass-card border border-white/10 hover:border-[#C8102E]/50 flex items-center gap-4 group transition-colors"
+            className="w-full sm:w-auto px-6 py-4 rounded-2xl glass-card border border-white/10 hover:border-[#FF7A00]/50 flex items-center gap-4 group transition-colors"
           >
-            <ChevronLeft size={24} className="text-[#C8102E] group-hover:-translate-x-1 transition-transform" />
+            <ChevronLeft size={24} className="text-[#FF7A00] group-hover:-translate-x-1 transition-transform" />
             <div className="flex flex-col text-left">
               <span className="text-[10px] uppercase tracking-widest text-white/40 font-semibold">PREVIOUS PROJECT</span>
-              <span className="font-bebas text-xl text-white group-hover:text-[#C8102E] transition-colors">{prevProject.title}</span>
+              <span className="font-bebas text-xl text-white group-hover:text-[#FF7A00] transition-colors">{prevProject.title}</span>
             </div>
           </Link>
 
           <Link
             to={`/projects/${nextProject.slug}`}
-            className="w-full sm:w-auto px-6 py-4 rounded-2xl glass-card border border-white/10 hover:border-[#C8102E]/50 flex items-center justify-end gap-4 group transition-colors text-right"
+            className="w-full sm:w-auto px-6 py-4 rounded-2xl glass-card border border-white/10 hover:border-[#FF7A00]/50 flex items-center justify-end gap-4 group transition-colors text-right"
           >
             <div className="flex flex-col text-right">
               <span className="text-[10px] uppercase tracking-widest text-white/40 font-semibold">NEXT PROJECT</span>
-              <span className="font-bebas text-xl text-white group-hover:text-[#C8102E] transition-colors">{nextProject.title}</span>
+              <span className="font-bebas text-xl text-white group-hover:text-[#FF7A00] transition-colors">{nextProject.title}</span>
             </div>
-            <ChevronRight size={24} className="text-[#C8102E] group-hover:translate-x-1 transition-transform" />
+            <ChevronRight size={24} className="text-[#FF7A00] group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
 
         {/* ================= RELATED PROJECTS ================= */}
         <div className="space-y-8 pt-12 border-t border-white/10">
           <div className="flex flex-col items-center text-center">
-            <span className="text-xs uppercase tracking-widest font-semibold text-[#C8102E] mb-1">EXPLORE MORE</span>
+            <span className="text-xs uppercase tracking-widest font-semibold text-[#FF7A00] mb-1">EXPLORE MORE</span>
             <h2 className="font-bebas text-3xl sm:text-4xl text-white tracking-wide">RELATED PROJECTS</h2>
           </div>
 
@@ -284,7 +275,7 @@ const ProjectDetails = () => {
               <Link
                 key={rel.slug}
                 to={`/projects/${rel.slug}`}
-                className="glass-card rounded-2xl overflow-hidden border border-white/10 hover:border-[#C8102E]/50 group transition-all"
+                className="glass-card rounded-2xl overflow-hidden border border-white/10 hover:border-[#FF7A00]/50 group transition-all"
               >
                 <div className="aspect-[16/10] overflow-hidden bg-black/40">
                   <img
@@ -294,8 +285,8 @@ const ProjectDetails = () => {
                   />
                 </div>
                 <div className="p-5">
-                  <span className="text-[10px] uppercase tracking-widest font-semibold text-[#C8102E]">{rel.category}</span>
-                  <h3 className="font-bebas text-2xl text-white group-hover:text-[#C8102E] transition-colors mt-1">{rel.title}</h3>
+                  <span className="text-[10px] uppercase tracking-widest font-semibold text-[#FF7A00]">{rel.category}</span>
+                  <h3 className="font-bebas text-2xl text-white group-hover:text-[#FF7A00] transition-colors mt-1">{rel.title}</h3>
                 </div>
               </Link>
             ))}

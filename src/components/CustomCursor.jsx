@@ -135,27 +135,27 @@ const CustomCursor = () => {
       if (isMouseDown.current) {
         // Active click state
         ringVisual.style.transform = 'scale(0.85)';
-        ringVisual.style.backgroundColor = 'rgba(200, 16, 46, 0.45)';
-        ringVisual.style.borderColor = '#C8102E';
-        ringVisual.style.boxShadow = '0 0 24px rgba(200, 16, 46, 0.95)';
+        ringVisual.style.backgroundColor = 'rgba(255, 122, 0, 0.42)';
+        ringVisual.style.borderColor = '#FF7A00';
+        ringVisual.style.boxShadow = '0 0 24px rgba(255, 122, 0, 0.85)';
 
         dotVisual.style.transform = 'scale(1.35)';
         dotVisual.style.opacity = '1';
       } else if (isHovered.current) {
         // Hovering interactive elements
         ringVisual.style.transform = 'scale(1.72)';
-        ringVisual.style.backgroundColor = 'rgba(200, 16, 46, 0.24)';
-        ringVisual.style.borderColor = '#C8102E';
-        ringVisual.style.boxShadow = '0 0 28px rgba(200, 16, 46, 0.85)';
+        ringVisual.style.backgroundColor = 'rgba(255, 122, 0, 0.2)';
+        ringVisual.style.borderColor = '#FF7A00';
+        ringVisual.style.boxShadow = '0 0 28px rgba(255, 122, 0, 0.7)';
 
         dotVisual.style.transform = 'scale(0.55)';
         dotVisual.style.opacity = '0.6';
       } else {
         // Default floating state
         ringVisual.style.transform = 'scale(1)';
-        ringVisual.style.backgroundColor = 'rgba(200, 16, 46, 0.14)';
+        ringVisual.style.backgroundColor = 'rgba(255, 122, 0, 0.12)';
         ringVisual.style.borderColor = 'rgba(255, 255, 255, 0.45)';
-        ringVisual.style.boxShadow = '0 0 16px rgba(200, 16, 46, 0.45)';
+        ringVisual.style.boxShadow = '0 0 16px rgba(255, 122, 0, 0.35)';
 
         dotVisual.style.transform = 'scale(1)';
         dotVisual.style.opacity = '1';
@@ -260,9 +260,9 @@ const CustomCursor = () => {
           style={{
             width: '28px',
             height: '28px',
-            backgroundColor: 'rgba(200, 16, 46, 0.14)',
+            backgroundColor: 'rgba(255, 122, 0, 0.12)',
             border: '1px solid rgba(255, 255, 255, 0.45)',
-            boxShadow: '0 0 16px rgba(200, 16, 46, 0.45)',
+            boxShadow: '0 0 16px rgba(255, 122, 0, 0.35)',
             transform: 'scale(1)',
             transformOrigin: 'center center',
             transition:
@@ -285,7 +285,7 @@ const CustomCursor = () => {
             width: '6px',
             height: '6px',
             backgroundColor: '#FFFFFF',
-            boxShadow: '0 0 8px rgba(200, 16, 46, 0.9)',
+            boxShadow: '0 0 8px rgba(255, 122, 0, 0.85)',
             transform: 'scale(1)',
             transformOrigin: 'center center',
             transition: 'transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease',

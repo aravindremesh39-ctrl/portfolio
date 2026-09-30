@@ -8,9 +8,9 @@ const About = () => {
   const { avatar } = portfolioData.personalInfo;
 
   return (
-    <section id="about" className="relative py-24 bg-[#050505] overflow-hidden">
+    <section id="about" className="relative py-24 bg-[#0B0B0B] overflow-hidden">
       {/* Background Accent Glow */}
-      <div className="absolute top-1/4 right-0 w-96 h-96 bg-[#C8102E]/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/4 right-0 w-96 h-96 bg-[#FF7A00]/10 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-6 md:px-12">
         {/* Section Header */}
@@ -20,10 +20,10 @@ const About = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#C8102E]/10 border border-[#C8102E]/30 mb-4"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FF7A00]/10 border border-[#FF7A00]/30 mb-4"
           >
-            <User size={14} className="text-[#C8102E]" />
-            <span className="text-xs uppercase tracking-[0.2em] font-semibold text-[#C8102E]">
+            <User size={14} className="text-[#FF7A00]" />
+            <span className="text-xs uppercase tracking-[0.2em] font-semibold text-[#FF7A00]">
               ABOUT ME
             </span>
           </motion.div>
@@ -58,12 +58,12 @@ const About = () => {
                   className="w-full h-full object-cover filter brightness-90 group-hover:scale-105 transition-transform duration-500"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-80" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0B] via-transparent to-transparent opacity-80" />
               </div>
 
               {/* Experience Badge */}
-              <div className="absolute -bottom-4 -right-2 glass-panel-red px-5 py-3.5 rounded-2xl border border-[#C8102E]/40 shadow-red-glow flex items-center gap-3 bg-[#050505]/90 backdrop-blur-xl">
-                <div className="w-10 h-10 rounded-xl bg-[#C8102E] flex items-center justify-center text-white font-bebas text-xl shrink-0">
+              <div className="absolute -bottom-4 -right-2 glass-panel-orange px-5 py-3.5 rounded-2xl border border-[#FF7A00]/40 shadow-orange-glow flex items-center gap-3 bg-[#0B0B0B]/90 backdrop-blur-xl">
+                <div className="w-10 h-10 rounded-xl bg-[#FF7A00] flex items-center justify-center text-white font-bebas text-xl shrink-0">
                   <Award size={20} />
                 </div>
                 <div>

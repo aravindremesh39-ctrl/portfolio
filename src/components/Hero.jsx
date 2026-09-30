@@ -57,29 +57,29 @@ const Hero = () => {
       ref={heroRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative w-full min-h-screen pt-28 pb-12 flex flex-col justify-between items-center bg-[#050505] overflow-hidden select-none"
+      className="relative w-full min-h-screen pt-28 pb-12 flex flex-col justify-between items-center bg-[#0B0B0B] overflow-hidden select-none"
     >
       {/* Top Bar Header Labels */}
       <div className="w-full max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center text-[10px] sm:text-xs font-semibold uppercase tracking-[0.25em] text-white/50 border-b border-white/5 pb-4 z-20">
         <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-[#C8102E] animate-ping" />
+          <span className="w-2 h-2 rounded-full bg-[#FF7A00] animate-ping" />
           <span>UI/UX DESIGNER & GRAPHIC ARTIST</span>
         </div>
         <div className="flex items-center gap-2 text-white/70">
-          <span className="text-[#C8102E]">✦</span>
+          <span className="text-[#FF7A00]">✦</span>
           <span>CREATIVE PORTFOLIO</span>
         </div>
       </div>
 
       {/* Background Glowing Lights (z-0) */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] sm:w-[650px] sm:h-[650px] bg-[#C8102E]/20 rounded-full blur-[140px] pointer-events-none z-0 animate-pulse-slow" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] sm:w-[650px] sm:h-[650px] bg-[#FF7A00]/15 rounded-full blur-[140px] pointer-events-none z-0 animate-pulse-slow" />
 
       {/* Massive Background Typography 'PORTFOLIO' (Strictly behind Hero Image: z-0) */}
       <motion.div
         style={{ y: smoothYParallax }}
         className="absolute bottom-0 w-full text-center pointer-events-none z-0 overflow-hidden"
       >
-        <h1 className="font-bebas text-[22vw] sm:text-[20vw] font-extrabold tracking-wider text-[#C8102E] opacity-[0.05] leading-none select-none drop-shadow-2xl">
+        <h1 className="font-bebas text-[22vw] sm:text-[20vw] font-extrabold tracking-wider text-[#FF7A00] opacity-[0.04] leading-none select-none drop-shadow-2xl">
           PORTFOLIO
         </h1>
       </motion.div>
@@ -95,7 +95,7 @@ const Hero = () => {
           className="lg:col-span-4 flex flex-col justify-center text-left z-20"
         >
           {/* Cursive Greeting */}
-          <span className="font-script text-4xl sm:text-5xl md:text-6xl text-[#C8102E] mb-1 drop-shadow-md">
+          <span className="font-script text-4xl sm:text-5xl md:text-6xl text-[#FF7A00] mb-1 drop-shadow-md">
             Hello, I'm
           </span>
 
@@ -122,7 +122,7 @@ const Hero = () => {
           <div className="flex flex-wrap items-center gap-4 mb-4">
             <a
               href="#projects"
-              className="px-8 py-4 rounded-full bg-[#C8102E] text-white font-bebas text-lg tracking-widest hover:bg-[#E50914] transition-all duration-300 transform hover:scale-105 shadow-red-glow flex items-center gap-2 group"
+              className="px-8 py-4 rounded-full bg-[#FF7A00] text-white font-bebas text-lg tracking-widest hover:bg-[#FF8A1F] transition-all duration-300 transform hover:scale-105 shadow-orange-glow flex items-center gap-2 group"
             >
               <span>VIEW PORTFOLIO</span>
               <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
@@ -161,8 +161,8 @@ const Hero = () => {
           </div>
 
           {/* Floating Aesthetic Badge */}
-          <div className="hidden sm:flex absolute right-[-10px] md:right-[-30px] top-1/2 -translate-y-1/2 max-w-[210px] glass-panel-red p-4 rounded-2xl border border-[#C8102E]/30 shadow-glass z-30 items-center gap-3">
-            <div className="w-9 h-9 rounded-full bg-[#C8102E]/30 border border-[#C8102E] flex items-center justify-center text-[#C8102E] shrink-0">
+          <div className="hidden sm:flex absolute right-[-10px] md:right-[-30px] top-1/2 -translate-y-1/2 max-w-[210px] glass-panel-orange p-4 rounded-2xl border border-[#FF7A00]/30 shadow-glass z-30 items-center gap-3">
+            <div className="w-9 h-9 rounded-full bg-[#FF7A00]/20 border border-[#FF7A00] flex items-center justify-center text-[#FF7A00] shrink-0">
               <Sparkles size={16} />
             </div>
             <p className="text-[11px] text-white/80 leading-snug font-medium">
@@ -180,7 +180,7 @@ const Hero = () => {
         >
           {/* Stat 1 */}
           <div className="flex flex-col items-center lg:items-end">
-            <span className="font-bebas text-5xl sm:text-6xl lg:text-7xl text-[#C8102E] leading-none drop-shadow-md">
+            <span className="font-bebas text-5xl sm:text-6xl lg:text-7xl text-[#FF7A00] leading-none drop-shadow-md">
               <AnimatedCounter value={3} suffix="+" />
             </span>
             <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-white/60 mt-1">
@@ -207,7 +207,7 @@ const Hero = () => {
       <div className="w-full flex justify-center z-20 pt-4">
         <a
           href="#about"
-          className="flex flex-col items-center gap-1.5 text-white/40 hover:text-[#C8102E] transition-colors group"
+          className="flex flex-col items-center gap-1.5 text-white/40 hover:text-[#FF7A00] transition-colors group"
         >
           <span className="text-[9px] uppercase tracking-[0.3em] font-semibold">
             SCROLL DOWN
@@ -216,7 +216,7 @@ const Hero = () => {
             animate={{ y: [0, 6, 0] }}
             transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
           >
-            <ChevronDown size={18} className="group-hover:text-[#C8102E]" />
+            <ChevronDown size={18} className="group-hover:text-[#FF7A00]" />
           </motion.div>
         </a>
       </div>
