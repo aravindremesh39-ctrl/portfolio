@@ -110,10 +110,10 @@
   animation: pulseSlow 8s ease-in-out infinite;
 }
 
-/* Custom cursor */
-@media (hover: hover) and (pointer: fine) {
-  .custom-cursor-active,
-  .custom-cursor-active * {
+/* Custom cursor - only on desktop fine pointers and when reduced motion is not requested */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  html.custom-cursor-active,
+  html.custom-cursor-active * {
     cursor: none !important;
   }
 }
