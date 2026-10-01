@@ -30,36 +30,54 @@ const Contact = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const RECIPIENT = atob('YXJhdmluZG1yMTM0N0BnbWFpbC5jb20='); // base64 of aravindmr1347@gmail.com
+ // base64 of aravindmr1347@gmail.com
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  setIsSubmitting(true);
 
-    // Build mailto URI with form data
-    const subject = encodeURIComponent(`[Portfolio Inquiry] ${formData.subject}`);
-    const body = encodeURIComponent(
-      `Hi Aravind,\n\nName: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
-    );
-    const mailtoLink = `mailto:${RECIPIENT}?subject=${subject}&body=${body}`;
+  try {
+    const response = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({
+        access_key: '147dfa8e-6c13-4f30-8c01-35d37b3f0410',
 
-    // Open user's default mail client
-    window.location.href = mailtoLink;
+        name: formData.name,
+        email: formData.email,
+        subject: `[Portfolio Inquiry] ${formData.subject}`,
+        message: formData.message,
 
-    // Show success state and confetti after triggering
-    setTimeout(() => {
-      setIsSubmitting(false);
+        from_name: 'Aravind Ramesh Portfolio',
+      }),
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
       setSubmitted(true);
+
       try {
         confetti({
           particleCount: 80,
           spread: 70,
           origin: { y: 0.6 },
-          colors: ['#FF7A00', '#FFFFFF', '#FF8A1F']
+          colors: ['#FF7A00', '#FFFFFF', '#FF8A1F'],
         });
       } catch (_) {}
-    }, 500);
-  };
+    } else {
+      alert('Something went wrong. Please try again.');
+    }
+  } catch (error) {
+    console.error('Form submission error:', error);
+    alert('Unable to send the message. Please try again.');
+  } finally {
+    setIsSubmitting(false);
+  }
+};
 
   return (
     <section id="contact" className="relative py-28 bg-[#0B0B0B] overflow-hidden">

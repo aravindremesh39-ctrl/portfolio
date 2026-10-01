@@ -9,7 +9,17 @@ const Projects = () => {
   const navigate=useNavigate()
 
   // Categories
-  const filterCategories = ['All', 'Graphic Design', 'UI/UX', '2D', '3D', 'Animation', 'Videos'];
+  const filterCategories = [
+  'All',
+  'Ai',
+  'Graphic Design',
+  'UI/UX',
+  '2D',
+  '3D',
+  'Animation',
+  'Videos',
+  'Branding'
+];
 
   const filteredProjects = selectedFilter === 'All'
     ? portfolioData.projects

@@ -31,6 +31,14 @@ export const portfolioData = {
     ]
   },
   skills: [
+     {
+      category: "Ai",
+      items: [
+        { name: "Chat GPT", percentage: 96, icon: "Layout" },
+        { name: "Gemini", percentage: 92, icon: "Palette" }
+      
+      ]
+    },
     {
       category: "Design",
       items: [
@@ -38,6 +46,7 @@ export const portfolioData = {
         { name: "Artist", percentage: 92, icon: "Palette" }
       ]
     },
+  
     {
       category: "Adobe Creative Cloud",
       items: [

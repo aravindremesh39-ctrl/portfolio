@@ -53,7 +53,7 @@ const About = () => {
             <div className="relative mx-auto max-w-sm lg:max-w-none rounded-3xl overflow-hidden glass-panel p-3 border border-white/10 shadow-glass group">
               <div className="relative aspect-[4/5] rounded-2xl overflow-hidden">
                 <img
-                  src="/assets/aravind.png"
+                  src="/assets/aravind2.png"
                   alt="Aravind Ramesh"
                   className="w-full h-full object-cover filter brightness-90 group-hover:scale-105 transition-transform duration-500"
                   loading="lazy"

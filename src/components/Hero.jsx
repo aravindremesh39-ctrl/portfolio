@@ -150,7 +150,7 @@ const Hero = () => {
 
             {/* Portrait Image (Overlaps PORTFOLIO background text) */}
             <img
-              src="/assets/aravind2.png"
+              src="/assets/img01.png"
               alt="Aravind Ramesh"
               className="w-full  h-full p-8 object-cover filter brightness-[0.9] contrast-[1.05] transition-transform duration-500 group-hover:scale-105"
               loading="eager"
