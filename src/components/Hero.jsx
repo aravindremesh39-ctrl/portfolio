@@ -57,7 +57,7 @@ const Hero = () => {
       ref={heroRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative w-full min-h-screen pt-28 pb-12 flex flex-col justify-between items-center bg-[#0B0B0B] overflow-hidden select-none"
+      className="relative w-full min-h-screen pt-28 pb-12 flex flex-col justify-between items-center overflow-hidden select-none"
     >
       {/* Top Bar Header Labels */}
       <div className="w-full max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center text-[10px] sm:text-xs font-semibold uppercase tracking-[0.25em] text-white/50 border-b border-white/5 pb-4 z-20">
@@ -70,6 +70,14 @@ const Hero = () => {
           <span>CREATIVE PORTFOLIO</span>
         </div>
       </div>
+
+      {/* ── Seamless Bottom Edge Transition to Next Section ── */}
+      <div
+        className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none z-0"
+        style={{
+          background: 'linear-gradient(to bottom, transparent, rgba(11,11,11,0.4) 60%, rgba(11,11,11,0.85) 100%)',
+        }}
+      />
 
       {/* Background Glowing Lights (z-0) */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] sm:w-[650px] sm:h-[650px] bg-[#FF7A00]/15 rounded-full blur-[140px] pointer-events-none z-0 animate-pulse-slow" />
@@ -161,7 +169,7 @@ const Hero = () => {
           </div>
 
           {/* Floating Aesthetic Badge */}
-          <div className="hidden sm:flex absolute right-[-10px] md:right-[-30px] top-1/2 -translate-y-1/2 max-w-[210px] glass-panel-orange p-4 rounded-2xl border border-[#FF7A00]/30 shadow-glass z-30 items-center gap-3">
+          <div className="hidden sm:flex absolute right-[-10px] md:right-[-30px] top-1/2 -translate-y-1/2 max-w-[210px] glass-card p-4 rounded-2xl z-30 items-center gap-3">
             <div className="w-9 h-9 rounded-full bg-[#FF7A00]/20 border border-[#FF7A00] flex items-center justify-center text-[#FF7A00] shrink-0">
               <Sparkles size={16} />
             </div>
@@ -171,12 +179,12 @@ const Hero = () => {
           </div>
         </motion.div>
 
-        {/* Right Side Vertical Statistics */}
+        {/* Right Side Vertical Statistics Panel */}
         <motion.div
           initial={{ opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="lg:col-span-3 flex flex-row lg:flex-col justify-around lg:justify-center items-center lg:items-end gap-8 lg:text-right border-t lg:border-t-0 lg:border-l border-white/10 pt-6 lg:pt-0 lg:pl-8 z-20"
+          className="lg:col-span-3 flex flex-row lg:flex-col justify-around lg:justify-center items-center lg:items-end gap-6 lg:gap-8 lg:text-right glass-card p-6 sm:p-7 rounded-3xl z-20"
         >
           {/* Stat 1 */}
           <div className="flex flex-col items-center lg:items-end">

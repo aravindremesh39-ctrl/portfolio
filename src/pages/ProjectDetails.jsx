@@ -45,7 +45,7 @@ const ProjectDetails = () => {
 
   if (!project) {
     return (
-      <div className="min-h-screen bg-[#0B0B0B] text-white flex flex-col items-center justify-center p-6 text-center">
+      <div className="min-h-screen text-white flex flex-col items-center justify-center p-6 text-center">
         <h2 className="font-bebas text-5xl text-[#FF7A00] mb-4">PROJECT NOT FOUND</h2>
         <p className="text-sm text-white/60 mb-8">The project case study you are looking for does not exist.</p>
         <Link
@@ -83,7 +83,7 @@ const ProjectDetails = () => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.4 }}
-      className="min-h-screen bg-[#0B0B0B] text-white selection:bg-[#FF7A00] selection:text-white font-poppins relative"
+      className="min-h-screen text-white selection:bg-[#FF7A00] selection:text-white font-poppins relative"
     >
       {/* Background Radial Glow */}
       <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-[#FF7A00]/10 rounded-full blur-[180px] pointer-events-none z-0" />
@@ -204,7 +204,7 @@ const ProjectDetails = () => {
             {project.tech.map((tool) => (
               <div
                 key={tool}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-xs font-semibold text-white/90 hover:border-[#FF7A00]/50 transition-colors"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl glass-panel text-xs font-semibold text-white/90 hover:border-[#FF7A00]/50 transition-colors"
               >
                 <span className="text-[#FF7A00]">{toolIconMap[tool] || <Sparkles size={16} />}</span>
                 <span>{tool}</span>
@@ -214,18 +214,16 @@ const ProjectDetails = () => {
         </div>
 
         {/* ================= PROJECT OVERVIEW & NARRATIVE ================= */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-start pt-6 border-t border-white/10">
+        <div className="glass-card p-6 md:p-10 rounded-3xl grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
           <div className="md:col-span-4">
-            <h2 className="font-bebas text-3xl sm:text-4xl text-white tracking-wide leading-none sticky top-24">
+            <h2 className="font-bebas text-3xl sm:text-4xl text-white tracking-wide leading-none">
               PROJECT <span className="text-[#FF7A00]">OVERVIEW</span>
             </h2>
           </div>
 
-          <div className="md:col-span-8 space-y-8 text-sm sm:text-base text-white/70 leading-relaxed font-light">
-            <div>
-              <h3 className="text-base font-semibold text-white mb-2 uppercase tracking-wider text-[#FF7A00]">OVERVIEW</h3>
-              <p>{project.overview || project.description}</p>
-            </div>
+          <div className="md:col-span-8 space-y-4 text-sm sm:text-base text-white/70 leading-relaxed font-light">
+            <h3 className="text-base font-semibold text-white uppercase tracking-wider text-[#FF7A00]">OVERVIEW</h3>
+            <p>{project.overview || project.description}</p>
           </div>
         </div>
 

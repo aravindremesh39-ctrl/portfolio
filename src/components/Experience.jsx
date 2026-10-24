@@ -8,7 +8,7 @@ const Experience = () => {
   const education = portfolioData.education;
 
   return (
-    <section id="experience" className="relative py-24 bg-[#0B0B0B] overflow-hidden">
+    <section id="experience" className="relative py-24 overflow-hidden">
       {/* Background Glow */}
       <div className="absolute top-1/3 left-0 w-80 h-80 bg-[#FF7A00]/10 rounded-full blur-[140px] pointer-events-none" />
 

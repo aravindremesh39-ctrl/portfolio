@@ -47,32 +47,50 @@
 
 /* Glassmorphism utility classes */
 .glass-panel {
-  background: rgba(17, 17, 17, 0.7);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(20, 20, 20, 0.55);
+  backdrop-filter: blur(16px) saturate(120%);
+  -webkit-backdrop-filter: blur(16px) saturate(120%);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.22);
 }
 
 .glass-panel-orange,
 .glass-panel-red {
-  background: rgba(255, 122, 0, 0.05);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 122, 0, 0.2);
+  background: rgba(26, 22, 18, 0.55);
+  backdrop-filter: blur(16px) saturate(120%);
+  -webkit-backdrop-filter: blur(16px) saturate(120%);
+  border: 1px solid rgba(255, 122, 0, 0.22);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.22);
 }
 
 .glass-card {
-  background: rgba(21, 21, 21, 0.75);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  background: rgba(20, 20, 20, 0.55);
+  backdrop-filter: blur(16px) saturate(120%);
+  -webkit-backdrop-filter: blur(16px) saturate(120%);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  transition:
+    transform 300ms ease,
+    border-color 300ms ease,
+    background 300ms ease,
+    box-shadow 300ms ease;
 }
 
 .glass-card:hover {
-  background: rgba(26, 26, 26, 0.9);
-  border-color: rgba(255, 122, 0, 0.35);
-  box-shadow: 0 10px 40px -10px rgba(255, 122, 0, 0.2);
   transform: translateY(-4px);
+  background: rgba(28, 24, 20, 0.65);
+  border-color: rgba(255, 122, 0, 0.35);
+  box-shadow: 0 12px 36px rgba(255, 122, 0, 0.08);
+}
+
+/* Fallback for browsers without backdrop-filter support */
+@supports not ((-webkit-backdrop-filter: blur(16px)) or (backdrop-filter: blur(16px))) {
+  .glass-card,
+  .glass-panel,
+  .glass-panel-orange {
+    background: rgba(18, 18, 18, 0.92);
+  }
 }
 
 /* Custom Typography Helpers */

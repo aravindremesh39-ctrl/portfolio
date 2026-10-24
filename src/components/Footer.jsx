@@ -7,7 +7,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="w-full bg-[#030303] border-t border-white/10 py-10 px-6 md:px-12 select-none">
+    <footer className="w-full bg-[#030303]/80 backdrop-blur-sm border-t border-white/10 py-10 px-6 md:px-12 select-none">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
         
         {/* Left Brand info */}

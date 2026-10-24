@@ -25,7 +25,7 @@ const Skills = () => {
   const categoryNames = ['All', ...skillCategories.map(c => c.category)];
 
   return (
-    <section id="skills" className="relative py-24 bg-[#0B0B0B] overflow-hidden">
+    <section id="skills" className="relative py-24 overflow-hidden">
       {/* Background Radial Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-[#FF7A00]/10 rounded-full blur-[160px] pointer-events-none" />
 

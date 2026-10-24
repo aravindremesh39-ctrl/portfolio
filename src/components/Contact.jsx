@@ -80,7 +80,7 @@ const Contact = () => {
 };
 
   return (
-    <section id="contact" className="relative py-28 bg-[#0B0B0B] overflow-hidden">
+    <section id="contact" className="relative py-28 overflow-hidden">
       {/* Glow Effects */}
       <div className="absolute top-1/2 right-0 w-96 h-96 bg-[#FF7A00]/15 rounded-full blur-[160px] pointer-events-none" />
 
